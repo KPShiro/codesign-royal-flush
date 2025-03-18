@@ -1,0 +1,51 @@
+@theme {
+    --color-primary: var(--color-purple-300);
+    --color-on-primary: var(--color-purple-900);
+
+    --color-primary-container: var(--color-purple-900);
+    --color-on-primary-container: var(--color-purple-300);
+
+    --color-danger: var(--color-red-300);
+    --color-on-danger: var(--color-red-900);
+
+    --color-danger-container: var(--color-red-900);
+    --color-on-danger-container: var(--color-red-200);
+
+    --color-warning: var(--color-yellow-300);
+    --color-on-warning: var(--color-yellow-900);
+
+    --color-warning-container: var(--color-yellow-800);
+    --color-on-warning-container: var(--color-yellow-200);
+
+    --color-success: var(--color-green-300);
+    --color-on-success: var(--color-green-900);
+
+    --color-success-container: var(--color-green-800);
+    --color-on-success-container: var(--color-green-200);
+
+    --color-surface: var(--color-slate-900);
+    --color-on-surface: var(--color-slate-200);
+
+    --color-surface-container: var(--color-slate-800);
+    --color-on-surface-container: var(--color-slate-300);
+
+    --color-border: var(--color-slate-700);
+
+    /* STATES */
+
+    --opacity-disabled: 25%;
+
+    /* DEFAULTS */
+
+    --default-border-width: 1px;
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-border);
+    }
+}

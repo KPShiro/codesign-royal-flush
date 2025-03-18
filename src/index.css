@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+@import './themes/default.css';
+
+@theme {
+    /* ANIMATIONS */
+
+    --animate-fade-in: fade-in 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-fade-out: fade-out 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-scale-in: scale-in 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-scale-out: scale-out 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-in-up: slide-in-up 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-in-right: slide-in-right 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-in-down: slide-in-down 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-in-left: slide-in-left 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-out-up: slide-out-up 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-out-right: slide-out-right 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-out-down: slide-out-down 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-out-left: slide-out-left 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-ping-ring: ping-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+    /* BREAKPOINTS */
+
+    --breakpoint-*: initial;
+    --breakpoint-tablet: 640px;
+    --breakpoint-laptop: 960px;
+    --breakpoint-desktop: 1279px;
+
+    /* KEYFRAMES */
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-out {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes scale-in {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes scale-out {
+        0% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    }
+
+    @keyframes slide-in-up {
+        0% {
+            opacity: 0;
+            transform: translateY(10%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slide-in-right {
+        0% {
+            opacity: 0;
+            transform: translateX(-10%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-in-down {
+        0% {
+            opacity: 0;
+            transform: translateY(-10%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slide-in-left {
+        0% {
+            opacity: 0;
+            transform: translateX(10%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-out-up {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-10%);
+        }
+    }
+
+    @keyframes slide-out-right {
+        0% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(10%);
+        }
+    }
+
+    @keyframes slide-out-down {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(10%);
+        }
+    }
+
+    @keyframes slide-out-left {
+        0% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(-10%);
+        }
+    }
+
+    @keyframes ping-ring {
+        0% {
+            box-shadow: 0 0 0 0 var(--color-primary);
+        }
+        75%,
+        100% {
+            box-shadow: 0 0 0 8px transparent;
+        }
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-surface text-on-surface;
+        font-feature-settings:
+            'rlig' 1,
+            'calt' 1;
+    }
+
+    a {
+        @apply text-primary font-medium hover:underline;
+    }
+}
