@@ -1,12 +1,12 @@
 import { PageContainer } from '@/components/page-container';
-import { Currency } from '@components/wallet/wallet-provider';
+import { CurrencyType } from '@components/wallet/wallet-provider';
 import { RewardsSection } from '../components/rewards-section';
 import { RewardCoins } from '../components/rewards/reward-coins';
 import { RewardDiamonds } from '../components/rewards/reward-diamonds';
 
 type GetRewardsResponse = {
-    amount: Currency['amount'];
-    type: Currency['type'];
+    amount: number;
+    type: CurrencyType;
     limit?: number;
 }[];
 

@@ -1,16 +1,15 @@
+import { collect } from '@/animations/collect';
 import { Card } from '@/components/card';
 import { Icon } from '@/components/icon';
-import { explode } from '@animations/explode';
+import { getCurrencyConfig } from '@/components/wallet/wallet-provider';
 import { Currency, useWallet } from '@components/wallet';
-import { useGSAP } from '@gsap/react';
 import { cn } from '@utils/cn';
-import { gsap } from 'gsap';
 import { CheckIcon, ChevronRightIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 type RewardProps = Pick<React.ComponentProps<'div'>, 'className'> & {
     amount: Currency['amount'];
-    type: Currency['type'];
+    type: Currency['currency'];
     text: string;
     image: string;
     limit?: number;
@@ -29,12 +28,12 @@ export const Reward = ({
     className,
 }: RewardProps) => {
     const wallet = useWallet();
+    const currencyConfig = getCurrencyConfig(type);
 
     const [claimCounter, setClaimCounter] = useState<number>(0);
     const [claimsLeft, setClaimsLeft] = useState<number>(limit ?? 0);
     const [isLimitReached, setIsLimitReached] = useState<boolean>(false);
 
-    const [timeline, setTimeline] = useState<gsap.core.Timeline | null>(null);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
     const explosionSpawnRef = useRef<HTMLDivElement>(null);
@@ -48,29 +47,6 @@ export const Reward = ({
         setClaimsLeft(limit - claimCounter);
     }, [claimCounter, limit]);
 
-    useGSAP(() => {
-        const timeline = gsap.timeline({
-            paused: true,
-            onStart: () => {
-                setIsAnimating(true);
-            },
-            onComplete: () => {
-                wallet.addCurrency(amount, type);
-                setIsAnimating(false);
-            },
-        });
-
-        timeline.add(
-            explode({
-                spawner: explosionSpawnRef.current,
-                particleImage,
-                particleCount,
-            })
-        );
-
-        setTimeline(timeline);
-    }, []);
-
     const handleOnClaimClick = () => {
         if (isLimitReached || isAnimating) {
             return;
@@ -78,12 +54,19 @@ export const Reward = ({
 
         setClaimCounter((value) => value + 1);
 
-        if (!timeline) {
-            return;
-        }
-
-        timeline.invalidate();
-        timeline.restart();
+        collect({
+            source: explosionSpawnRef.current,
+            target: `#${currencyConfig.walletElementId}`,
+            particleImage,
+            particleCount,
+            onStart: () => {
+                setIsAnimating(true);
+            },
+            onComplete: () => {
+                wallet.addAmount(amount, type);
+                setIsAnimating(false);
+            },
+        });
     };
 
     return (

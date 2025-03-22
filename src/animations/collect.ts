@@ -1,10 +1,12 @@
 import { getElementPosition } from '@/utils/get-element-position';
 import { createParticleSystem } from '@utils/create-particle-system';
 import { gsap } from 'gsap';
-import { fadeOut } from './fade-out';
 
-type ExplodeOptions = {
-    source: HTMLElement | null;
+type ElementType = Element | string | null;
+
+type CollectOptions = {
+    source: ElementType;
+    target: ElementType;
     particleImage: string;
     particleCount?: number;
     particleSize?: number;
@@ -12,16 +14,17 @@ type ExplodeOptions = {
     onComplete?: () => void;
 };
 
-export const explode = ({
+export const collect = ({
     source,
+    target,
     particleImage,
     particleCount = 10,
     particleSize = 48,
     onStart,
     onComplete,
-}: ExplodeOptions) => {
+}: CollectOptions) => {
     const particleSystem = createParticleSystem({
-        particleCount: particleCount,
+        particleCount,
         src: particleImage,
         style: {
             width: `${particleSize}px`,
@@ -30,14 +33,16 @@ export const explode = ({
     });
 
     let sourcePosition = getElementPosition(source, true);
+    let targetPosition = getElementPosition(target, true);
 
     const updatePositions = () => {
         requestAnimationFrame(() => {
             sourcePosition = getElementPosition(source, true);
+            targetPosition = getElementPosition(target, true);
 
             gsap.to(particleSystem.children, {
-                x: () => sourcePosition.x,
-                y: () => sourcePosition.y,
+                x: () => targetPosition.x,
+                y: () => targetPosition.y,
                 duration: 0.5,
                 ease: 'power2.out',
                 stagger: 0.025,
@@ -52,7 +57,7 @@ export const explode = ({
             particleSystem.init();
 
             sourcePosition = getElementPosition(source, true);
-
+            targetPosition = getElementPosition(target, true);
             onStart?.();
         },
         onComplete: () => {
@@ -62,8 +67,6 @@ export const explode = ({
             onComplete?.();
         },
     });
-
-    // ------------------------------
 
     timeline.set(particleSystem.children, {
         x: () => sourcePosition.x,
@@ -87,58 +90,23 @@ export const explode = ({
         ease: 'power2.out',
     });
 
-    timeline.add(
-        fadeOut({
-            target: particleSystem.children,
+    timeline.to(particleSystem.children, {
+        x: () => targetPosition.x,
+        y: () => targetPosition.y,
+        duration: 0.5,
+        ease: 'power2.out',
+        stagger: 0.025,
+    });
+
+    timeline.to(
+        particleSystem.children,
+        {
             duration: 0.5,
-            stagger: 0.01,
-        }),
+            opacity: 0,
+            stagger: 0.025,
+        },
         '<'
     );
-
-    // ------------------------------
-
-    // if (!source) {
-    //     throw new Error('Spawner element is not defined!');
-    // }
-
-    // const spawnerRect = source.getBoundingClientRect();
-    // const spawnPoint = {
-    //     x:
-    //         spawnerRect.x +
-    //         spawnerRect.width / 2 +
-    //         (particlePosition === 'fixed' ? 0 : window.scrollX),
-    //     y:
-    //         spawnerRect.y +
-    //         spawnerRect.height / 2 +
-    //         (particlePosition === 'fixed' ? 0 : window.scrollY),
-    // };
-
-    // timeline.set(particleSystem.children, {
-    //     x: spawnPoint.x,
-    //     y: spawnPoint.y,
-    //     opacity: 1,
-    // });
-
-    // const _scatterSize = scatterSize ?? (particleCount * 2 * particleSize) / 20;
-
-    // timeline.to(particleSystem.children, {
-    //     x: `+=random(-${_scatterSize}, ${_scatterSize}, 1)`,
-    //     y: `+=random(-${_scatterSize}, ${_scatterSize}, 1)`,
-    //     duration: 0.5,
-    //     ease: 'power2.out',
-    // });
-
-    // if (fade) {
-    //     timeline.add(
-    //         fadeOut({
-    //             target: particleSystem.children,
-    //             duration: 0.5,
-    //             stagger: 0.01,
-    //         }),
-    //         '<'
-    //     );
-    // }
 
     return timeline;
 };
