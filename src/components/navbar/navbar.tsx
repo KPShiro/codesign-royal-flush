@@ -2,12 +2,15 @@ import { OutlinedButton } from '@components/button';
 import { PageContainer } from '@components/page-container';
 import { Wallet } from '@components/wallet';
 import { cn } from '@utils/cn';
-import { BellIcon, MenuIcon, MessageSquareIcon } from 'lucide-react';
+import { BellIcon, MenuIcon, MessageSquareIcon, TrophyIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { NavbarLogo } from './navbar-logo';
 
 type NavbarProps = Pick<React.ComponentProps<'div'>, 'className'>;
 
 export const Navbar = ({ className }: NavbarProps) => {
+    const navigate = useNavigate();
+
     return (
         <div className={cn('bg-surface-container border-b', className)}>
             <PageContainer
@@ -20,6 +23,7 @@ export const Navbar = ({ className }: NavbarProps) => {
                     <div className="desktop:flex hidden gap-2">
                         <OutlinedButton icon={BellIcon} disabled />
                         <OutlinedButton icon={MessageSquareIcon} disabled />
+                        <OutlinedButton icon={TrophyIcon} onClick={() => navigate('/rewards')} />
                     </div>
                     <div className="desktop:block bg-primary/15 hidden h-4 w-0.5"></div>
                     <OutlinedButton icon={MenuIcon} />
