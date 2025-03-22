@@ -1,8 +1,8 @@
-import { PageContainer } from '@/components/page-container';
+import { PageContainer } from '@components/page-container';
 import { CurrencyType } from '@components/wallet/wallet-provider';
+import { RewardCoins } from '../components/reward-coins';
+import { RewardDiamonds } from '../components/reward-diamonds';
 import { RewardsSection } from '../components/rewards-section';
-import { RewardCoins } from '../components/rewards/reward-coins';
-import { RewardDiamonds } from '../components/rewards/reward-diamonds';
 
 type GetRewardsResponse = {
     amount: number;

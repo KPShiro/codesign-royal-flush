@@ -1,5 +1,5 @@
-import { RewardsDashboardPage } from '@/features/rewards/pages/rewards-dashboard';
 import { DefaultLayout } from '@components/layout';
+import { RewardsDashboardPage } from '@features/rewards/pages/rewards-dashboard';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter([
