@@ -1,5 +1,5 @@
+import { PageContainer } from '@/components/page';
 import { OutlinedButton } from '@components/button';
-import { PageContainer } from '@components/page-container';
 import { Wallet } from '@components/wallet';
 import { cn } from '@utils/cn';
 import { BellIcon, MenuIcon, MessageSquareIcon, TrophyIcon } from 'lucide-react';

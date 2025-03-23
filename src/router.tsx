@@ -1,19 +1,15 @@
-import { DefaultLayout } from '@components/layout';
+import { LobbyPage } from '@features/lobby/pages/lobby';
 import { RewardsDashboardPage } from '@features/rewards/pages/rewards-dashboard';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Navigate to="rewards" />,
+        element: <LobbyPage />,
     },
     {
         path: 'rewards',
-        element: (
-            <DefaultLayout>
-                <RewardsDashboardPage />
-            </DefaultLayout>
-        ),
+        element: <RewardsDashboardPage />,
     },
     {
         path: '*',
