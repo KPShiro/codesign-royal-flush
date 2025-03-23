@@ -14,13 +14,13 @@ export const CurrencyWallet = ({ currency }: CurrencyWalletProps) => {
     const containerElementRef = useRef<HTMLDivElement>(null);
 
     const wallet = useWallet();
+    const walletAmount = useMemo(() => wallet.getAmount(currency), [currency, wallet.getAmount]);
     const currencyConfig = getCurrencyConfig(currency);
 
-    const [currentAmount, setCurrentAmount] = useState<number>(0);
-    const amount = useMemo(() => wallet.getAmount(currency), [currency, wallet.getAmount]);
+    const [amount, setAmount] = useState<number>(walletAmount);
 
     useGSAP(() => {
-        if (currentAmount === amount) {
+        if (amount === walletAmount) {
             return;
         }
 
@@ -36,22 +36,22 @@ export const CurrencyWallet = ({ currency }: CurrencyWalletProps) => {
 
         timeline.add(
             counter({
-                initialValue: currentAmount,
-                targetValue: amount,
-                onUpdate: (value) => setCurrentAmount(value),
+                initialValue: amount,
+                targetValue: walletAmount,
+                onUpdate: (value) => setAmount(value),
             }),
             '<'
         );
 
         timeline.invalidate();
         timeline.restart();
-    }, [amount]);
+    }, [walletAmount]);
 
     return (
         <CurrencyText
             id={currencyConfig.walletElementId}
             ref={containerElementRef}
-            value={currentAmount}
+            value={amount}
             label={currencyConfig.code}
             className="text-sm font-semibold"
         />
