@@ -1,5 +1,5 @@
 import { Layout } from '@components/layout';
-import { PageTitle } from '@components/page';
+import { PageTitle, PageWrapper } from '@components/page';
 import { CurrencyType } from '@components/wallet/wallet-provider';
 import { RewardCoins } from '../components/reward-coins';
 import { RewardDiamonds } from '../components/reward-diamonds';
@@ -48,7 +48,7 @@ export const RewardsDashboardPage = () => {
 
     return (
         <Layout variant="withNavbar">
-            <div className="flex flex-col gap-10 py-10">
+            <PageWrapper>
                 <PageTitle
                     title="Rewards Center"
                     description="Your hub for tracking points, discovering special offers, and redeeming exclusive benefits designed to recognize and celebrate your loyalty."
@@ -69,7 +69,7 @@ export const RewardsDashboardPage = () => {
                         )}
                     />
                 </div>
-            </div>
+            </PageWrapper>
         </Layout>
     );
 };
