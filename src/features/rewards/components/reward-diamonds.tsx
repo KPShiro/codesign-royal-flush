@@ -1,5 +1,5 @@
-import RewardGif from '/images/7.gif';
 import DiamondGif from '/images/diamond.gif';
+import RewardGif from '/images/diamond_pile_md.png';
 
 import { useMemo } from 'react';
 import { Reward } from './reward';

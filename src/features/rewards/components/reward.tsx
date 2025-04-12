@@ -89,7 +89,7 @@ export const Reward = ({
                             <Icon icon={CheckIcon} size="md" />
                         </div>
                     )}
-                    <img src={image} className={cn('size-10')} />
+                    <img src={image} className={cn('size-14')} />
                 </div>
                 <div className="@container/text flex items-center justify-between p-6 pr-8">
                     <div className="flex flex-col gap-0.5 text-sm">

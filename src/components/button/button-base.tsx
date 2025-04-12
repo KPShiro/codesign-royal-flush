@@ -14,7 +14,7 @@ const variants = cva<{
             size: {
                 md: 'h-10 px-4 gap-2 text-sm rounded-md',
                 sm: 'h-9 px-3.5 gap-1.5 text-xs rounded-sm',
-                xs: 'h-8 px-3 gap-1 text-xs rounded-sm',
+                xs: 'h-8 px-3 gap-1.5 text-xs rounded-sm',
             },
         },
         defaultVariants: {

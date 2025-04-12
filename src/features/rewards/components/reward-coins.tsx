@@ -1,5 +1,5 @@
 import CoinGif from '/images/coin.gif';
-import RewardGif from '/images/logo.gif';
+import RewardGif from '/images/tokens_pile_md.png';
 
 import { useMemo } from 'react';
 import { Reward } from './reward';
