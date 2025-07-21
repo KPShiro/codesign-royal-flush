@@ -48,12 +48,14 @@ export const CurrencyWallet = ({ currency }: CurrencyWalletProps) => {
     }, [walletAmount]);
 
     return (
-        <CurrencyText
-            id={currencyConfig.walletElementId}
-            ref={containerElementRef}
-            value={amount}
-            label={currencyConfig.code}
-            className="text-sm font-semibold"
-        />
+        <div className="bg-primary/15 text-primary flex h-10 items-center justify-center rounded-md px-4">
+            <CurrencyText
+                id={currencyConfig.walletElementId}
+                ref={containerElementRef}
+                value={amount}
+                label={currencyConfig.name}
+                className="text-sm font-semibold"
+            />
+        </div>
     );
 };

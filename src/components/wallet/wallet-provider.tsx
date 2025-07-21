@@ -16,6 +16,7 @@ export type CurrencyType = 'COIN' | 'DIAMOND';
 interface CurrencyConfig {
     code: string;
     type: CurrencyType;
+    name: string;
     imageSrc: string;
     walletElementId: string;
     isPremium: boolean;
@@ -25,8 +26,9 @@ const CurrencyConfig = new Map<CurrencyType, CurrencyConfig>([
     [
         'COIN',
         {
-            code: 'GC',
+            code: 'GCC',
             type: 'COIN',
+            name: 'Gold',
             imageSrc: CoinGif,
             walletElementId: 'coin-wallet',
             isPremium: false,
@@ -35,8 +37,9 @@ const CurrencyConfig = new Map<CurrencyType, CurrencyConfig>([
     [
         'DIAMOND',
         {
-            code: 'DC',
+            code: 'DCC',
             type: 'DIAMOND',
+            name: 'Diamonds',
             imageSrc: DiamondGif,
             walletElementId: 'diamond-wallet',
             isPremium: true,
