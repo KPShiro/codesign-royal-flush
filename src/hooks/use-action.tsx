@@ -1,42 +1,45 @@
 import { LucideProps } from 'lucide-react';
 import { useCallback, useState } from 'react';
 
-export type Action = {
-    icon: React.ElementType<LucideProps> | undefined;
+export type Action<TArgs, TResult> = {
+    icon: React.ElementType<LucideProps>;
     label: string;
     isHidden: boolean;
     isDisabled: boolean;
     isProcessing: boolean;
-    execute: () => void;
+    execute: (args: TArgs) => Promise<TResult>;
 };
 
-type UseActionProps = {
-    icon?: React.ElementType<LucideProps>;
+type UseActionProps<TArgs, TResult> = {
+    icon: React.ElementType<LucideProps>;
     label: string;
     isHidden?: boolean;
     isDisabled?: boolean;
-    callback: () => Promise<void> | void;
+    execute: (args: TArgs) => Promise<TResult> | TResult;
 };
 
-export function useAction(props: UseActionProps): Action {
+export function useAction<TArgs = void, TResult = void>(
+    props: UseActionProps<TArgs, TResult>
+): Action<TArgs, TResult> {
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-    const handleExecute = useCallback(async () => {
-        if (props.isDisabled || isProcessing) {
-            return;
-        }
-
-        try {
-            setIsProcessing(true);
-            const result = props.callback();
-
-            if (result instanceof Promise) {
-                await result;
+    const handleExecute = useCallback(
+        async (args: TArgs) => {
+            if (props.isDisabled || isProcessing) {
+                return Promise.resolve() as Promise<TResult>;
             }
-        } finally {
-            setIsProcessing(false);
-        }
-    }, [props.isDisabled, props.callback]);
+
+            try {
+                setIsProcessing(true);
+
+                const result = await Promise.resolve(props.execute(args));
+                return result;
+            } finally {
+                setIsProcessing(false);
+            }
+        },
+        [props.isDisabled, isProcessing, props.execute]
+    );
 
     return {
         icon: props.icon,
