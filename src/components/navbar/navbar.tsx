@@ -1,11 +1,12 @@
+import './navbar.css';
+
 import { PageContainer } from '@/components/page';
 import { OutlinedButton } from '@components/button';
 import { Wallet } from '@components/wallet';
 import { cn } from '@utils/cn';
 import { TrophyIcon } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { NavbarLogo } from './navbar-logo';
-import './navbar.css';
+import { useNavigate } from '@tanstack/react-router';
 
 type NavbarProps = Pick<React.ComponentProps<'div'>, 'className'>;
 
@@ -22,7 +23,10 @@ export const Navbar = ({ className }: NavbarProps) => {
                     <Wallet />
                     <div className="bg-primary/15 h-2 w-0.5"></div>
                     <div className="flex gap-2">
-                        <OutlinedButton icon={TrophyIcon} onClick={() => navigate('/rewards')} />
+                        <OutlinedButton
+                            icon={TrophyIcon}
+                            onClick={() => navigate({ to: '/rewards' })}
+                        />
                     </div>
                 </div>
             </PageContainer>

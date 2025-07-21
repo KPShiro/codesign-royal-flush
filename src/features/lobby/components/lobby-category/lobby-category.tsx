@@ -3,9 +3,8 @@ import { Game } from '@/models/game';
 import { GameCategory } from '@/models/game-category';
 import { SquareArrowOutUpRightIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useFavouriteGames } from '../../hooks/use-favourite-games';
-import { useBrandGamesStore } from '../../store/brand-games';
+import { useFavouriteGames } from '@/features/lobby/hooks/use-favourite-games';
+import { useBrandGamesStore } from '@/features/lobby/store/brand-games';
 import { LobbyCategoryLayout } from './lobby-category-layout';
 
 export type LobbyCategoryProps = Omit<GameCategory, 'order'>;
@@ -13,8 +12,6 @@ export type LobbyCategoryProps = Omit<GameCategory, 'order'>;
 export const LobbyCategory = (props: LobbyCategoryProps) => {
     const [games, setGames] = useState<Game[]>([]);
     const [showSubpageLink, setShowSubpageLink] = useState<boolean>(false);
-
-    const navigate = useNavigate();
 
     const gamesStore = useBrandGamesStore();
     const favourtieGamesStore = useFavouriteGames();
@@ -35,7 +32,7 @@ export const LobbyCategory = (props: LobbyCategoryProps) => {
     }, [games]);
 
     const handleOnOpenSubpageClick = () => {
-        navigate(`/categories/${props.id}`);
+        throw new Error('Not implemented!');
     };
 
     if (games.length === 0) {

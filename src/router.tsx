@@ -1,18 +1,14 @@
-import { LobbyPage } from '@features/lobby/pages/lobby';
-import { RewardsDashboardPage } from '@features/rewards/pages/rewards-dashboard';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { RouterProvider as TanstackRouterProvider, createRouter } from '@tanstack/react-router';
+import { routeTree } from './routeTree.gen';
 
-export const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <LobbyPage />,
-    },
-    {
-        path: 'rewards',
-        element: <RewardsDashboardPage />,
-    },
-    {
-        path: '*',
-        element: <Navigate to="/" />,
-    },
-]);
+const router = createRouter({ routeTree });
+
+declare module '@tanstack/react-router' {
+    interface Register {
+        router: typeof router;
+    }
+}
+
+export const RouterProvider = () => {
+    return <TanstackRouterProvider router={router} />;
+};
