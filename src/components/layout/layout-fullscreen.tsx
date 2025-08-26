@@ -1,9 +1,7 @@
-import { PropsWithChildren } from 'react';
+import { BaseLayoutProps } from './layout';
 
-type LayoutFullscreenProps = PropsWithChildren;
-
-const LayoutFullscreen = ({ ...props }: LayoutFullscreenProps) => {
-    return <div {...props} className="h-dvh w-dvw overflow-x-clip overflow-y-auto" />;
+const LayoutFullscreen = ({ children }: BaseLayoutProps) => {
+    return <div className="h-dvh w-dvw overflow-x-clip overflow-y-auto">{children}</div>;
 };
 
 export default LayoutFullscreen;

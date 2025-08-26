@@ -57,7 +57,7 @@ export const getCurrencyConfig = (type: CurrencyType) => {
     return config;
 };
 
-type Wallet = {
+export type Wallet = {
     currency: CurrencyType;
     amount: number;
 };

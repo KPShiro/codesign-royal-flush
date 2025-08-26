@@ -6,7 +6,7 @@
     --color-on-primary-container: var(--color-purple-300);
 
     --color-danger: var(--color-red-300);
-    --color-on-danger: var(--color-red-900);
+    --color-on-danger: var(--color-red-950);
 
     --color-danger-container: var(--color-red-900);
     --color-on-danger-container: var(--color-red-200);
@@ -24,7 +24,7 @@
     --color-on-success-container: var(--color-green-200);
 
     --color-surface: var(--color-gray-900);
-    --color-on-surface: var(--color-gray-200);
+    --color-on-surface: var(--color-gray-100);
     --color-on-surface-variant: var(--color-gray-400);
 
     --color-surface-container: var(--color-gray-800);

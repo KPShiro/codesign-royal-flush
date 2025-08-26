@@ -1,10 +1,12 @@
-import { PageContainer } from '@components/page';
-import { PropsWithChildren } from 'react';
+import { PageContainer, PageWrapper } from '@components/page';
+import { BaseLayoutProps } from './layout';
 
-type LayoutWithoutNavbarProps = PropsWithChildren;
-
-const LayoutWithoutNavbar = ({ ...props }: LayoutWithoutNavbarProps) => {
-    return <PageContainer {...props} />;
+const LayoutWithoutNavbar = ({ children }: BaseLayoutProps) => {
+    return (
+        <PageContainer>
+            <PageWrapper>{children}</PageWrapper>
+        </PageContainer>
+    );
 };
 
 export default LayoutWithoutNavbar;

@@ -8,7 +8,7 @@ export const GAMES: Game[] = [
         status: 'LIVE',
         provider: {
             id: 'provider-1',
-            name: 'QuestGames',
+            name: 'Quest Games',
         },
         thumbnail: {
             square: '/images/thumbnails/mystery_quest_square.png',
@@ -22,7 +22,7 @@ export const GAMES: Game[] = [
         status: 'TEMP_UNAVAILABLE',
         provider: {
             id: 'provider-2',
-            name: 'SpinMasters',
+            name: 'Spin Masters',
         },
         thumbnail: {
             square: '/images/thumbnails/wild_spin_square.png',
@@ -33,10 +33,10 @@ export const GAMES: Game[] = [
     {
         id: 'game-3',
         title: 'Fortune Falls',
-        status: 'DOWN',
+        status: 'LIVE',
         provider: {
             id: 'provider-3',
-            name: 'LuckyDev',
+            name: 'Lucky Dev',
         },
         thumbnail: {
             square: '/images/thumbnails/fortune_falls_square.png',
@@ -47,10 +47,10 @@ export const GAMES: Game[] = [
     {
         id: 'game-4',
         title: 'Jungle Jam',
-        status: 'LIVE',
+        status: 'DOWN',
         provider: {
             id: 'provider-4',
-            name: 'GreenSpin',
+            name: 'Green Spin',
         },
         thumbnail: {
             square: '/images/thumbnails/jungle_jam_square.png',
@@ -64,7 +64,7 @@ export const GAMES: Game[] = [
         status: 'LIVE',
         provider: {
             id: 'provider-5',
-            name: 'DeepBlue',
+            name: 'Deep Blue',
         },
         thumbnail: {
             square: '/images/thumbnails/ocean_riches_square.png',
@@ -75,10 +75,10 @@ export const GAMES: Game[] = [
     {
         id: 'game-6',
         title: 'Dragon’s Gold',
-        status: 'TEMP_UNAVAILABLE',
+        status: 'LIVE',
         provider: {
             id: 'provider-6',
-            name: 'FireForge',
+            name: 'Fire Forge',
         },
         thumbnail: {
             square: '/images/thumbnails/dragons_gold_square.png',
@@ -89,10 +89,10 @@ export const GAMES: Game[] = [
     {
         id: 'game-7',
         title: 'Haunted Reels',
-        status: 'DOWN',
+        status: 'LIVE',
         provider: {
             id: 'provider-7',
-            name: 'GhostSpinners',
+            name: 'Ghost Spinners',
         },
         thumbnail: {
             square: '/images/thumbnails/haunted_reels_square.png',
@@ -106,7 +106,7 @@ export const GAMES: Game[] = [
         status: 'LIVE',
         provider: {
             id: 'provider-8',
-            name: 'SafariSoft',
+            name: 'Safari Soft',
         },
         thumbnail: {
             square: '/images/thumbnails/mega_safari_square.png',
@@ -117,10 +117,10 @@ export const GAMES: Game[] = [
     {
         id: 'game-9',
         title: 'Neon Nights',
-        status: 'TEMP_UNAVAILABLE',
+        status: 'LIVE',
         provider: {
             id: 'provider-9',
-            name: 'RetroPlay',
+            name: 'Retro Play',
         },
         thumbnail: {
             square: '/images/thumbnails/neon_nights_square.png',
@@ -131,10 +131,10 @@ export const GAMES: Game[] = [
     {
         id: 'game-10',
         title: 'Frozen Fortunes',
-        status: 'DOWN',
+        status: 'LIVE',
         provider: {
             id: 'provider-10',
-            name: 'IcePeak',
+            name: 'Ice Peak',
         },
         thumbnail: {
             square: '/images/thumbnails/frozen_fortunes_square.png',
@@ -149,18 +149,18 @@ export const GAME_DIRECTORIES: GameCategory[] = [
         id: 'promoted',
         type: 'default',
         name: 'Promoted Games',
-        description: 'Newely releasted games in your region',
-        limit: 3,
+        description: 'Promotional content with higher prizes',
         layout: 'horizontal',
-        gameIds: ['game-2', 'game-1', 'game-3', 'game-7', 'game-9'],
+        limit: 3,
+        gameIds: ['game-1', 'game-3', 'game-7'],
         enableSubpage: true,
     },
     {
         id: 'favourites',
         type: 'favourties',
         name: 'Favourites',
-        description: 'Collection of your favourite games',
         limit: 4,
+        description: 'Collection of your favourite games',
         layout: 'square',
         gameIds: [],
         enableSubpage: true,
@@ -169,18 +169,18 @@ export const GAME_DIRECTORIES: GameCategory[] = [
         id: 'new-releases',
         type: 'default',
         name: 'New Releases',
-        description: 'Newely releasted games in your region',
         limit: 4,
-        layout: 'square',
-        gameIds: ['game-2', 'game-1', 'game-3', 'game-7', 'game-9'],
+        description: 'Newely releasted games in your region',
+        layout: 'vertical',
+        gameIds: ['game-2', 'game-1', 'game-3', 'game-7', 'game-9', 'game-5'],
         enableSubpage: true,
     },
     {
         id: 'all-games',
         type: 'default',
         name: 'All Available Games',
+        limit: 8,
         description: 'All games available on our platform to play',
-        limit: 10,
         layout: 'square',
         gameIds: [
             'game-1',

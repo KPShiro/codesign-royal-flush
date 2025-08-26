@@ -1,5 +1,5 @@
 import { Layout } from '@components/layout';
-import { PageTitle, PageWrapper } from '@components/page';
+import { PageTitle } from '@components/page';
 import { CurrencyType } from '@components/wallet/wallet-provider';
 import { RewardCoins } from '../components/reward-coins';
 import { RewardDiamonds } from '../components/reward-diamonds';
@@ -48,28 +48,24 @@ export const RewardsDashboardPage = () => {
 
     return (
         <Layout variant="withNavbar">
-            <PageWrapper>
-                <PageTitle
-                    title="Rewards Center"
-                    description="Your hub for tracking points, discovering special offers, and redeeming exclusive benefits designed to recognize and celebrate your loyalty."
+            <PageTitle
+                title="Rewards Center"
+                description="Your hub for tracking points, discovering special offers, and redeeming exclusive benefits designed to recognize and celebrate your loyalty."
+            />
+            <div className="flex flex-col gap-10">
+                <RewardsSection
+                    title="Coin Rewards"
+                    items={coinRewards}
+                    renderItem={(item) => <RewardCoins amount={item.amount} limit={item.limit} />}
                 />
-                <div className="flex flex-col gap-10">
-                    <RewardsSection
-                        title="Coin Rewards"
-                        items={coinRewards}
-                        renderItem={(item) => (
-                            <RewardCoins amount={item.amount} limit={item.limit} />
-                        )}
-                    />
-                    <RewardsSection
-                        title="Diamond Rewards"
-                        items={diamondRewards}
-                        renderItem={(item) => (
-                            <RewardDiamonds amount={item.amount} limit={item.limit} />
-                        )}
-                    />
-                </div>
-            </PageWrapper>
+                <RewardsSection
+                    title="Diamond Rewards"
+                    items={diamondRewards}
+                    renderItem={(item) => (
+                        <RewardDiamonds amount={item.amount} limit={item.limit} />
+                    )}
+                />
+            </div>
         </Layout>
     );
 };

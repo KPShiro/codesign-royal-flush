@@ -193,3 +193,19 @@
         display: none;
     }
 }
+
+@utility bg-stripes-diagonal-* {
+    --color-main: --value(--color-*);
+    --color-background: color-mix(in oklab, --value(--color-*) 80%, transparent);
+
+    color: --value(--color-on-*);
+    backdrop-filter: blur(var(--blur-md));
+    background-color: var(--color-background);
+    background: repeating-linear-gradient(
+        -45deg,
+        --value(--color-*),
+        --value(--color-*) 15px,
+        var(--color-background) 15px,
+        var(--color-background) 25px
+    );
+}

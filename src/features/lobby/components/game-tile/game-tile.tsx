@@ -1,22 +1,22 @@
 import { Game } from '@/models/game';
-import { cn } from '@utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
-import { useRef } from 'react';
-import { GameTileFavourite } from './game-tile-favourite';
 import { GameTileImage } from './game-tile-image';
+import { GameTileInfo } from './game-tile-info';
+import { cn } from '@/utils/cn';
 
 const variants = cva(
     [
-        'bg-surface-container relative isolate cursor-pointer overflow-clip rounded-md shadow-md transition-all duration-300 size-full',
-        'outline-2 outline-transparent outline-offset-4 hover:outline-on-surface focus-visible:outline-on-surface max-laptop:active:outline-on-surface',
-        'hover:scale-105 hover:z-1 focus-visible:scale-105 focus-visible:z-1 max-laptop:active:scale-90 min-laptop:active:scale-100 min-laptop:active:duration-100',
+        'bg-surface isolate border border-border/60 relative cursor-pointer overflow-clip rounded-md shadow-md transition-transform duration-250 size-full select-none outline-2 outline-transparent outline-offset-4',
+        'hover:scale-105 hover:z-1 hover:outline-on-surface',
+        'focus-visible:scale-105 focus-visible:z-1 focus-visible:outline-on-surface',
+        'laptop:active:scale-100 active:scale-95 active:z-1',
     ],
     {
         variants: {
             variant: {
                 horizontal: 'aspect-[16/9]',
                 square: 'aspect-[1/1]',
-                vertical: 'aspect-[2/3]',
+                vertical: 'aspect-[3/4]',
             },
         },
         defaultVariants: {
@@ -25,27 +25,36 @@ const variants = cva(
     }
 );
 
-type GameTileProps = Pick<React.ComponentProps<'button'>, 'className'> &
+type GameTileProps = Pick<React.ComponentProps<'button'>, 'className' | 'onClick'> &
     VariantProps<typeof variants> &
     Game;
 
-export const GameTile = ({ variant, className, ...props }: GameTileProps) => {
-    const gameTileElementRef = useRef<HTMLButtonElement>(null);
+export const GameTile = ({ variant, className, onClick, ...game }: GameTileProps) => {
+    const isUnavailable = game.status === 'DOWN' || game.status === 'TEMP_UNAVAILABLE';
+
+    const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+        if (isUnavailable) {
+            alert('This game is currently unavailable.');
+            return;
+        }
+
+        onClick?.(event);
+    };
 
     return (
-        <button
-            ref={gameTileElementRef}
-            className={cn('group', variants({ variant, className }))}
-            title={props.title}
-        >
-            <GameTileImage variant={variant} thumbnail={props.thumbnail} alt={props.title} />
-            <GameTileFavourite gameId={props.id} className="absolute top-2 right-2 z-10" />
-            <div className="text-on-surface from-surface absolute bottom-0 z-10 flex h-2/3 w-full items-end bg-gradient-to-t to-transparent p-6">
-                <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
-                    <div className="text-md truncate font-semibold">{props.title}</div>
-                    <div className="truncate text-xs text-current/60">{props.provider.name}</div>
-                </div>
-            </div>
+        <button type="button" className={variants({ variant, className })} onClick={handleOnClick}>
+            <GameTileImage
+                variant={variant}
+                thumbnail={game.thumbnail}
+                alt={game.title}
+                className={cn(isUnavailable ? 'opacity-15' : '')}
+            />
+            <GameTileInfo
+                gameName={game.title}
+                providerName={game.provider.name}
+                isUnavailable={isUnavailable}
+                className="absolute bottom-0 left-0 z-20"
+            />
         </button>
     );
 };

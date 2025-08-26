@@ -4,24 +4,35 @@ import { SquareCategoryLayout } from './square-layout';
 import { VerticalCategoryLayout } from './vertical-layout';
 
 export const CategoryLayoutMap = {
-    square: SquareCategoryLayout,
-    vertical: VerticalCategoryLayout,
-    horizontal: HorizontalCategoryLayout,
+    square: {
+        component: SquareCategoryLayout,
+        gamesLimit: 8,
+    },
+    vertical: {
+        component: VerticalCategoryLayout,
+        gamesLimit: 4,
+    },
+    horizontal: {
+        component: HorizontalCategoryLayout,
+        gamesLimit: 3,
+    },
 };
 
 export type BaseLobbyCategoryLayoutProps = {
     layout: keyof typeof CategoryLayoutMap;
     games: Game[];
-    limit?: number;
+    gamesLimit: number;
 };
 
-export type LobbyCategoryLayoutProps = {
-    games: Game[];
-    limit?: number;
-};
+export type LobbyCategoryLayoutProps = Pick<BaseLobbyCategoryLayoutProps, 'games' | 'gamesLimit'>;
 
-export const LobbyCategoryLayout = ({ layout, games, limit }: BaseLobbyCategoryLayoutProps) => {
-    const LayoutComponent = CategoryLayoutMap[layout] || SquareCategoryLayout;
+export const LobbyCategoryLayout = ({
+    layout,
+    games,
+    gamesLimit,
+}: BaseLobbyCategoryLayoutProps) => {
+    const LayoutComponent = CategoryLayoutMap[layout].component || SquareCategoryLayout;
+    const gamesLimitValue = gamesLimit || CategoryLayoutMap[layout].gamesLimit;
 
-    return <LayoutComponent games={games} limit={limit} />;
+    return <LayoutComponent games={games} gamesLimit={gamesLimitValue} />;
 };

@@ -1,38 +1,26 @@
-import { OutlinedButton } from '@/components/button';
-import { Game } from '@/models/game';
 import { GameCategory } from '@/models/game-category';
-import { SquareArrowOutUpRightIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { useFavouriteGames } from '@/features/lobby/hooks/use-favourite-games';
-import { useBrandGamesStore } from '@/features/lobby/store/brand-games';
+import { useMemo } from 'react';
 import { LobbyCategoryLayout } from './lobby-category-layout';
+import { useAvailableGames } from '@/features/lobby/hooks/use-available-games';
+import { OutlinedButton } from '@/components/button';
 
 export type LobbyCategoryProps = Omit<GameCategory, 'order'>;
 
 export const LobbyCategory = (props: LobbyCategoryProps) => {
-    const [games, setGames] = useState<Game[]>([]);
-    const [showSubpageLink, setShowSubpageLink] = useState<boolean>(false);
+    const { data: availableGames } = useAvailableGames();
 
-    const gamesStore = useBrandGamesStore();
-    const favourtieGamesStore = useFavouriteGames();
-
-    useEffect(() => {
-        if (props.type === 'favourties') {
-            const favouriteGames = gamesStore.getAllById(favourtieGamesStore.gameIds);
-            setGames(favouriteGames);
-            return;
+    const games = useMemo(() => {
+        if (!availableGames || availableGames.length === 0) {
+            return [];
         }
 
-        const categoryGames = gamesStore.getAllById(props.gameIds);
-        setGames(categoryGames);
-    }, [gamesStore.games, favourtieGamesStore.gameIds]);
+        return [...availableGames].filter((game) => props.gameIds.includes(game.id));
+    }, [availableGames]);
 
-    useEffect(() => {
-        setShowSubpageLink(props.enableSubpage && props.limit < games.length);
-    }, [games]);
+    const hasMoreGames = games.length > props.limit;
 
-    const handleOnOpenSubpageClick = () => {
-        throw new Error('Not implemented!');
+    const handleNavigateToCategory = () => {
+        throw new Error('Not implemented');
     };
 
     if (games.length === 0) {
@@ -41,18 +29,18 @@ export const LobbyCategory = (props: LobbyCategoryProps) => {
 
     return (
         <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-between gap-4">
-                <h2 className="text-on-surface text-xl">{props.name}</h2>
-                {showSubpageLink && (
-                    <OutlinedButton
-                        size="sm"
-                        icon={SquareArrowOutUpRightIcon}
-                        text="See All"
-                        onClick={handleOnOpenSubpageClick}
-                    />
-                )}
+            <div className="tablet:flex-row flex flex-col justify-between gap-4">
+                <div className="flex flex-col gap-1">
+                    <h2 className="text-on-surface text-lg font-semibold">{props.name}</h2>
+                    <p className="text-on-surface-variant max-w-prose text-sm">
+                        {props.description}
+                    </p>
+                </div>
+                {hasMoreGames ? (
+                    <OutlinedButton text="See all games" onClick={handleNavigateToCategory} />
+                ) : null}
             </div>
-            <LobbyCategoryLayout layout={props.layout} games={games} limit={props.limit} />
+            <LobbyCategoryLayout layout={props.layout} games={games} gamesLimit={props.limit} />
         </div>
     );
 };
