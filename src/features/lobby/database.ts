@@ -1,11 +1,13 @@
-import { Game } from '@/models/game';
-import { GameCategory } from '@/models/game-category';
+import { LobbySectionEntity } from '@src/features/lobby/api/lobby/get-lobby-sections';
+import { JackpotEntity } from '@src/features/lobby/api/lobby/get-jackpots';
+import { GameEntity } from '@src/features/lobby/api/lobby/get-available-games';
 
-export const GAMES: Game[] = [
+export const GAMES: GameEntity[] = [
     {
         id: 'game-1',
         title: 'Mystery Quest',
-        status: 'LIVE',
+        status: 'TEMP_UNAVAILABLE',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-1',
             name: 'Quest Games',
@@ -19,7 +21,9 @@ export const GAMES: Game[] = [
     {
         id: 'game-2',
         title: 'Wild Spin',
-        status: 'TEMP_UNAVAILABLE',
+        status: 'LIVE',
+        label: 'Exclusive',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-2',
             name: 'Spin Masters',
@@ -34,6 +38,8 @@ export const GAMES: Game[] = [
         id: 'game-3',
         title: 'Fortune Falls',
         status: 'LIVE',
+        label: 'Exclusive',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-3',
             name: 'Lucky Dev',
@@ -48,6 +54,7 @@ export const GAMES: Game[] = [
         id: 'game-4',
         title: 'Jungle Jam',
         status: 'DOWN',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-4',
             name: 'Green Spin',
@@ -62,6 +69,7 @@ export const GAMES: Game[] = [
         id: 'game-5',
         title: 'Ocean Riches',
         status: 'LIVE',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-5',
             name: 'Deep Blue',
@@ -76,6 +84,7 @@ export const GAMES: Game[] = [
         id: 'game-6',
         title: 'Dragon’s Gold',
         status: 'LIVE',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-6',
             name: 'Fire Forge',
@@ -90,6 +99,7 @@ export const GAMES: Game[] = [
         id: 'game-7',
         title: 'Haunted Reels',
         status: 'LIVE',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-7',
             name: 'Ghost Spinners',
@@ -104,6 +114,7 @@ export const GAMES: Game[] = [
         id: 'game-8',
         title: 'Mega Safari',
         status: 'LIVE',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-8',
             name: 'Safari Soft',
@@ -118,6 +129,7 @@ export const GAMES: Game[] = [
         id: 'game-9',
         title: 'Neon Nights',
         status: 'LIVE',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-9',
             name: 'Retro Play',
@@ -132,6 +144,7 @@ export const GAMES: Game[] = [
         id: 'game-10',
         title: 'Frozen Fortunes',
         status: 'LIVE',
+        supportedCoinsTypes: ['GC', 'SC'],
         provider: {
             id: 'provider-10',
             name: 'Ice Peak',
@@ -144,56 +157,68 @@ export const GAMES: Game[] = [
     },
 ];
 
-export const GAME_DIRECTORIES: GameCategory[] = [
+export const JACKPOTS: JackpotEntity[] = [
+    {
+        id: 'jackpot-0',
+        type: 'GRAND',
+        coinType: 'GC',
+        gamesIds: ['game-2'],
+        value: 7_521_902,
+    },
+    {
+        id: 'jackpot-1',
+        type: 'MAJOR',
+        coinType: 'GC',
+        gamesIds: ['game-2'],
+        value: 42_000,
+    },
+    {
+        id: 'jackpot-2',
+        type: 'MINOR',
+        coinType: 'GC',
+        gamesIds: ['game-2'],
+        value: 2_137,
+    },
+    {
+        id: 'jackpot-3',
+        type: 'MAJOR',
+        coinType: 'GC',
+        gamesIds: ['game-7'],
+        value: 500_000,
+    },
+];
+
+export const LOBBY_SECTIONS: LobbySectionEntity[] = [
     {
         id: 'promoted',
-        type: 'default',
+        type: 'GAMES_DIRECTORY',
+        variant: 'DEFAULT',
         name: 'Promoted Games',
-        description: 'Promotional content with higher prizes',
-        layout: 'horizontal',
-        limit: 3,
-        gameIds: ['game-1', 'game-3', 'game-7'],
-        enableSubpage: true,
+        gameIds: ['game-2'],
+        isVisible: true,
     },
     {
         id: 'favourites',
-        type: 'favourties',
+        type: 'GAMES_DIRECTORY',
+        variant: 'DEFAULT',
         name: 'Favourites',
-        limit: 4,
-        description: 'Collection of your favourite games',
-        layout: 'square',
-        gameIds: [],
-        enableSubpage: true,
+        gameIds: ['game-1'],
+        isVisible: false,
     },
     {
         id: 'new-releases',
-        type: 'default',
+        type: 'GAMES_DIRECTORY',
+        variant: 'PROMOTED',
         name: 'New Releases',
-        limit: 4,
-        description: 'Newely releasted games in your region',
-        layout: 'vertical',
-        gameIds: ['game-2', 'game-1', 'game-3', 'game-7', 'game-9', 'game-5'],
-        enableSubpage: true,
+        gameIds: ['game-3', 'game-1', 'game-7'],
+        isVisible: true,
     },
     {
         id: 'all-games',
-        type: 'default',
-        name: 'All Available Games',
-        limit: 8,
-        description: 'All games available on our platform to play',
-        layout: 'square',
-        gameIds: [
-            'game-1',
-            'game-2',
-            'game-3',
-            'game-4',
-            'game-5',
-            'game-6',
-            'game-7',
-            'game-8',
-            'game-9',
-            'game-10',
-        ],
-        enableSubpage: false,
+        type: 'GAMES_DIRECTORY',
+        variant: 'DEFAULT',
+        name: 'All Games',
+        gameIds: [...GAMES.sort((a, b) => a.title.localeCompare(b.title)).map((game) => game.id)],
+        isVisible: true,
     },
 ];

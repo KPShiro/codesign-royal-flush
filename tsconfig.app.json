@@ -8,11 +8,16 @@
         "types": ["vitest/globals", "@testing-library/jest-dom"],
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./src/*"],
+            "@brand-config": ["./src/config/brand-config/RLF.config.ts"],
+
+            "@src/*": ["./src/*"],
             "@animations/*": ["./src/animations/*"],
             "@assets/*": ["./src/assets/*"],
             "@components/*": ["./src/components/*"],
+            "@config/*": ["./src/config/*"],
             "@features/*": ["./src/features/*"],
+            "@hooks/*": ["./src/hooks/*"],
+            "@models/*": ["./src/models/*"],
             "@utils/*": ["./src/utils/*"]
             // Add more path aliases here, just remember to add them to the vite.config.ts as well...
         },

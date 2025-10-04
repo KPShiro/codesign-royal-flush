@@ -1,0 +1,43 @@
+.navbar-top--fosted {
+    --_bg-color: var(--color-surface-0, black);
+    --_border-thickness: var(--default-border-width, 1px);
+    --_blur: 32px;
+
+    position: relative;
+    isolation: isolate;
+}
+
+.navbar-top--fosted::before,
+.navbar-top--fosted::after {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    background-color: color-mix(in oklab, var(--_bg-color) 50%, transparent);
+    pointer-events: none;
+}
+
+.navbar-top--fosted::before {
+    height: 200%;
+    backdrop-filter: blur(var(--_blur)) brightness(90%) saturate(140%);
+    mask-image: linear-gradient(
+        to bottom,
+        var(--_bg-color) 0%,
+        var(--_bg-color) 50%,
+        transparent 50%
+    );
+}
+
+.navbar-top--fosted::after {
+    height: 100%;
+    transform: translateY(100%);
+    backdrop-filter: blur(var(--_blur)) brightness(200%) saturate(120%);
+    mask-image: linear-gradient(
+        to bottom,
+        var(--_bg-color) 0,
+        var(--_bg-color) var(--_border-thickness),
+        transparent var(--_border-thickness)
+    );
+}

@@ -1,0 +1,97 @@
+@import '../styles/index.css';
+
+@theme {
+    /* REFERENCE TOKENS */
+
+    --color-neutral-50: var(--color-slate-50);
+    --color-neutral-100: var(--color-slate-100);
+    --color-neutral-200: var(--color-slate-200);
+    --color-neutral-300: var(--color-slate-300);
+    --color-neutral-400: var(--color-slate-400);
+    --color-neutral-500: var(--color-slate-500);
+    --color-neutral-600: var(--color-slate-600);
+    --color-neutral-700: var(--color-slate-700);
+    --color-neutral-800: var(--color-slate-800);
+    --color-neutral-900: var(--color-slate-900);
+    --color-neutral-950: var(--color-slate-950);
+
+    --color-primary-50: var(--color-indigo-50);
+    --color-primary-100: var(--color-indigo-100);
+    --color-primary-200: var(--color-indigo-200);
+    --color-primary-300: var(--color-indigo-300);
+    --color-primary-400: var(--color-indigo-400);
+    --color-primary-500: var(--color-indigo-500);
+    --color-primary-600: var(--color-indigo-600);
+    --color-primary-700: var(--color-indigo-700);
+    --color-primary-800: var(--color-indigo-800);
+    --color-primary-900: var(--color-indigo-900);
+    --color-primary-950: var(--color-indigo-950);
+
+    /* SYSTEM TOKENS */
+
+    --color-primary: var(--color-primary-300);
+    --color-on-primary: var(--color-primary-900);
+
+    --color-primary-container: var(--color-primary-900);
+    --color-on-primary-container: var(--color-primary-100);
+
+    --color-coins-gold: var(--color-yellow-300);
+    --color-on-coins-gold: var(--color-yellow-900);
+
+    --color-danger: var(--color-red-300);
+    --color-on-danger: var(--color-red-950);
+
+    --color-danger-container: var(--color-red-900);
+    --color-on-danger-container: var(--color-red-200);
+
+    --color-warning: var(--color-yellow-300);
+    --color-on-warning: var(--color-yellow-900);
+
+    --color-warning-container: var(--color-yellow-800);
+    --color-on-warning-container: var(--color-yellow-200);
+
+    --color-success: var(--color-green-300);
+    --color-on-success: var(--color-green-900);
+
+    --color-success-container: var(--color-green-800);
+    --color-on-success-container: var(--color-green-200);
+
+    --color-surface-0: var(--color-gray-900);
+    --color-on-surface-0: var(--color-gray-100);
+    --color-on-surface-0-variant: var(--color-gray-400);
+
+    --color-surface-1: var(--color-gray-800);
+    --color-on-surface-1: var(--color-gray-100);
+    --color-on-surface-1-variant: var(--color-gray-400);
+
+    --color-border: var(--color-gray-700);
+
+    --opacity-disabled: 25%;
+
+    /* ----default-border-width has to be here for TailwindCSS */
+    --default-border-width: 2px;
+    --default-border-radius: 40px;
+
+    /* COMPONENT TOKENS */
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-border);
+    }
+
+    html {
+        @apply bg-surface-0 text-on-surface-0;
+        font-feature-settings:
+            'rlig' 1,
+            'calt' 1;
+    }
+
+    a {
+        @apply text-primary font-medium hover:underline;
+    }
+}

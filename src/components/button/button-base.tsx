@@ -50,7 +50,7 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
                 ) : null}
                 {text ? (
                     <div className={cn('inline-flex min-w-0', loading && 'opacity-0')}>
-                        <span className="truncate">{text}</span>
+                        <span className="truncate font-semibold">{text}</span>
                     </div>
                 ) : null}
             </button>

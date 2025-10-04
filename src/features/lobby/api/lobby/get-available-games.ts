@@ -1,7 +1,38 @@
-import { GAMES } from '@/features/lobby/database';
-import { Game } from '@/models/game';
-import { delayedPromise } from '@/utils/delayed-promise';
+import { GAMES } from '@features/lobby/database';
+import { delayedPromise } from '@utils/delayed-promise';
 
-export async function getAvailableGames(): Promise<Game[]> {
-    return await delayedPromise(() => GAMES, 1_000);
+type CoinsType = 'GC' | 'SC';
+
+export type GameEntity = {
+    id: string;
+    title: string;
+    label?: string;
+    status: 'LIVE' | 'TEMP_UNAVAILABLE' | 'DOWN';
+    supportedCoinsTypes: CoinsType[];
+    provider: {
+        id: string;
+        name: string;
+    };
+    thumbnail: {
+        square: string;
+        vertical: string;
+        horizontal: string;
+    };
+};
+
+type GetAvailableGamesArgs = {
+    coinsType: CoinsType;
+};
+
+export async function getAvailableGames(args: GetAvailableGamesArgs): Promise<GameEntity[]> {
+    return await delayedPromise(
+        () =>
+            GAMES.filter((game) => {
+                const isSupportinCoinsType = game.supportedCoinsTypes.includes(args.coinsType);
+                const isOperational = game.status === 'LIVE' || game.status === 'TEMP_UNAVAILABLE';
+
+                return isSupportinCoinsType && isOperational;
+            }),
+        1_000
+    );
 }

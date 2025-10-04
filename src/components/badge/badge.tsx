@@ -10,7 +10,7 @@ export const Badge = ({ text, className }: BadgeProps) => {
         <div
             title={text}
             className={cn(
-                'inline-flex max-w-40 truncate rounded-full border border-transparent px-2 pt-0.5 pb-1 text-xs font-medium select-none',
+                'inline-flex h-6 max-w-40 items-center truncate rounded-full border border-transparent px-2.5 text-xs font-medium uppercase select-none',
                 className
             )}
         >

@@ -1,4 +1,4 @@
-import { Popover } from '@/components/popover';
+import { Popover } from '@components/popover';
 import { Icon } from '@components/icon';
 import { cn } from '@utils/cn';
 import { Loader2Icon, LucideProps } from 'lucide-react';

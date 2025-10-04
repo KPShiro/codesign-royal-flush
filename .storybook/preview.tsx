@@ -1,7 +1,7 @@
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { Preview } from '@storybook/react';
 
-import '../src/index.css';
+import '@brand-theme';
 
 const preview: Preview = {
     decorators: [

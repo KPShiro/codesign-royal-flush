@@ -1,8 +1,10 @@
 /// <reference types="vite/client" />
 
+import { BrandCode, BrandEnvironment } from './config';
+
 interface ImportMetaEnv {
-    readonly VITE_APP_TITLE: string;
-    readonly VITE_API_BASE_URL: string;
+    readonly VITE_BRAND_CODE: BrandCode;
+    readonly VITE_BRAND_ENV: BrandEnvironment;
     // more env variables...
 }
 

@@ -1,7 +1,10 @@
+export type GameStatus = 'LIVE' | 'TEMP_UNAVAILABLE' | 'DOWN';
+
 export type Game = {
     id: string;
     title: string;
-    status: 'LIVE' | 'TEMP_UNAVAILABLE' | 'DOWN';
+    label?: string;
+    status: GameStatus;
     provider: {
         id: string;
         name: string;

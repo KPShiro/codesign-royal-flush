@@ -1,2 +1,4 @@
 export { getAvailableGames } from './get-available-games';
-export { getAvailableGamesCategories } from './get-available-games-categories';
+export { getFavouriteGames } from './get-favourite-games';
+export { getJackpots } from './get-jackpots';
+export { getLobbySections } from './get-lobby-sections';

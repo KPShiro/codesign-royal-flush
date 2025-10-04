@@ -1,0 +1,82 @@
+@property --glow-degrees {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+}
+
+@utility glow-color-from-* {
+    --glow-color-from: --value(--color-*);
+}
+
+@utility glow-color-* {
+    --glow-color-from: --value(--color-*);
+    --glow-color-from: --value([color]);
+}
+
+@utility glow-color-to-* {
+    --glow-color-to: --value(--color-*);
+}
+
+@utility glow-opacity-* {
+    --glow-opacity: --value([percentage]);
+    --glow-opacity: calc(--value(integer) * 1%);
+    --glow-opacity: --value(--opacity-*);
+}
+
+@utility glow {
+    --_glow-color-from: var(--glow-color-from, canvas);
+    --_glow-color-to: var(--glow-color-to, transparent);
+    --_glow-opacity: var(--glow-opacity, 50%);
+
+    & {
+        position: relative;
+        animation: glowAnimation 1.5s infinite linear;
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        border-radius: inherit;
+    }
+
+    &::before {
+        z-index: 1;
+        inset: calc(var(--default-border-width) * -1);
+
+        padding: var(--default-border-width);
+        background: repeating-conic-gradient(
+            from var(--glow-degrees),
+            var(--_glow-color-from) 0%,
+            var(--_glow-color-to) 0%,
+            var(--_glow-color-from) 25%,
+            var(--_glow-color-to) 50%
+        );
+
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: exclude;
+        mask-composite: exclude;
+    }
+
+    &::after {
+        z-index: -1;
+        inset: 0;
+        box-shadow: 0 0 12px 4px
+            color-mix(in srgb, var(--_glow-color-from) var(--_glow-opacity), transparent);
+    }
+}
+
+@keyframes glowAnimation {
+    0% {
+        --glow-degrees: 0deg;
+    }
+    50% {
+        --glow-degrees: 180deg;
+    }
+    100% {
+        --glow-degrees: 360deg;
+    }
+}

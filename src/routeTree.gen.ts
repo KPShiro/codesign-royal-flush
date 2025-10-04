@@ -9,72 +9,58 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RewardsRouteImport } from './routes/rewards'
-import { Route as LobbyRouteImport } from './routes/lobby'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GamesIdRouteImport } from './routes/games.$id'
+import { Route as CategoriesIdRouteImport } from './routes/categories.$id'
 
-const RewardsRoute = RewardsRouteImport.update({
-  id: '/rewards',
-  path: '/rewards',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LobbyRoute = LobbyRouteImport.update({
-  id: '/lobby',
-  path: '/lobby',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GamesIdRoute = GamesIdRouteImport.update({
+  id: '/games/$id',
+  path: '/games/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesIdRoute = CategoriesIdRouteImport.update({
+  id: '/categories/$id',
+  path: '/categories/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/lobby': typeof LobbyRoute
-  '/rewards': typeof RewardsRoute
+  '/categories/$id': typeof CategoriesIdRoute
+  '/games/$id': typeof GamesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/lobby': typeof LobbyRoute
-  '/rewards': typeof RewardsRoute
+  '/categories/$id': typeof CategoriesIdRoute
+  '/games/$id': typeof GamesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/lobby': typeof LobbyRoute
-  '/rewards': typeof RewardsRoute
+  '/categories/$id': typeof CategoriesIdRoute
+  '/games/$id': typeof GamesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/lobby' | '/rewards'
+  fullPaths: '/' | '/categories/$id' | '/games/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/lobby' | '/rewards'
-  id: '__root__' | '/' | '/lobby' | '/rewards'
+  to: '/' | '/categories/$id' | '/games/$id'
+  id: '__root__' | '/' | '/categories/$id' | '/games/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  LobbyRoute: typeof LobbyRoute
-  RewardsRoute: typeof RewardsRoute
+  CategoriesIdRoute: typeof CategoriesIdRoute
+  GamesIdRoute: typeof GamesIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/rewards': {
-      id: '/rewards'
-      path: '/rewards'
-      fullPath: '/rewards'
-      preLoaderRoute: typeof RewardsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lobby': {
-      id: '/lobby'
-      path: '/lobby'
-      fullPath: '/lobby'
-      preLoaderRoute: typeof LobbyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -82,13 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/games/$id': {
+      id: '/games/$id'
+      path: '/games/$id'
+      fullPath: '/games/$id'
+      preLoaderRoute: typeof GamesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/$id': {
+      id: '/categories/$id'
+      path: '/categories/$id'
+      fullPath: '/categories/$id'
+      preLoaderRoute: typeof CategoriesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  LobbyRoute: LobbyRoute,
-  RewardsRoute: RewardsRoute,
+  CategoriesIdRoute: CategoriesIdRoute,
+  GamesIdRoute: GamesIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
