@@ -17,8 +17,8 @@ export const NavbarBottomItem = (props: NavbarBottomItemProps) => {
             to={props.to}
             title={props.label}
             className={cn(
-                'flex size-10 flex-col items-center justify-center rounded-lg select-none',
-                'text-current hover:bg-current/5 active:bg-current/10',
+                'flex size-12 flex-col items-center justify-center rounded-full select-none',
+                'hover:text-on-surface-1 text-on-surface-1/60 hover:bg-current/10 active:bg-current/15',
                 'data-[status=active]:bg-primary data-[status=active]:text-on-primary',
                 props.className
             )}

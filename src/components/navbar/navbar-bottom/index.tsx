@@ -37,7 +37,7 @@ export const NavbarBottom = (props: NavbarBottomProps) => {
         <div className={cn('py-4', props.className)}>
             <div
                 className={cn(
-                    'text-on-surface-1 bg-surface-1/60 mx-auto flex w-fit items-center justify-center gap-2 rounded-xl border-2 border-current/15 p-2 shadow-md backdrop-blur-xl'
+                    'text-on-surface-1 bg-surface-1/60 mx-auto flex w-fit items-center justify-center gap-2 rounded-full border p-2 brightness-90 saturate-150 backdrop-blur-lg'
                 )}
             >
                 {actions.map((action, index) => (
