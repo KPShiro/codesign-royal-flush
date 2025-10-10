@@ -32,12 +32,12 @@ export const Icon = ({ icon, size = 'md', className, ...props }: IconProps) => {
     const iconStrokeWidth = useMemo(() => {
         switch (size) {
             case 'sm':
-                return 1.4;
+                return 1.75;
             case 'xs':
-                return 1.2;
+                return 1.5;
             case 'md':
             default:
-                return 1.6;
+                return 2;
         }
     }, [size]);
 
