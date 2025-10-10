@@ -5,7 +5,10 @@ type AnimateNumberWithScaleOptions = {
     target: gsap.TweenTarget;
     fromValue: number;
     toValue: number;
+    snap?: number;
+    onStart?: () => void;
     onUpdate?: (value: number) => void;
+    onComplete?: () => void;
 };
 
 export const animateNumberWithScale = (options: AnimateNumberWithScaleOptions) => {
@@ -21,7 +24,10 @@ export const animateNumberWithScale = (options: AnimateNumberWithScaleOptions) =
             fromValue: options.fromValue,
             toValue: options.toValue,
             duration: 1,
+            snap: options.snap,
+            onStart: options.onStart,
             onUpdate: options.onUpdate,
+            onComplete: options.onComplete,
         }),
         '<'
     );

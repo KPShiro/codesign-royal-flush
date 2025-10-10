@@ -1,8 +1,8 @@
 import { gsap } from 'gsap';
 
 type AnimateNumberOptions = {
+    fromValue: number;
     toValue: number;
-    fromValue?: number;
     snap?: number;
     onStart?: () => void;
     onUpdate?: (value: number) => void;
@@ -10,7 +10,7 @@ type AnimateNumberOptions = {
 } & Pick<gsap.TweenVars, 'duration' | 'ease'>;
 
 export const animateNumber = (options: AnimateNumberOptions) => {
-    const animationTarget = { value: options.fromValue ?? 0 };
+    const animationTarget = { value: options.fromValue };
 
     return gsap.to(animationTarget, {
         value: options.toValue,
