@@ -11,16 +11,14 @@ type OverlayWithJackpotProps = Pick<React.ComponentProps<'div'>, 'className'> & 
 
 export const OverlayWithJackpot = (props: OverlayWithJackpotProps) => {
     const [displayedValue, setDisaplayedValue] = useState<number>(props.jackpotValue);
-    const testRef = useRef<HTMLDivElement>(null);
+    const valueRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
         animateNumberWithScale({
-            target: testRef.current!,
+            target: valueRef.current,
             fromValue: displayedValue,
             toValue: props.jackpotValue,
-            onUpdate: (value) => {
-                setDisaplayedValue(value);
-            },
+            onUpdate: setDisaplayedValue,
         });
     }, [props.jackpotValue]);
 
@@ -31,7 +29,7 @@ export const OverlayWithJackpot = (props: OverlayWithJackpotProps) => {
                     <div className="text-3xs font-bold">{props.jackpotType}</div>
                 </div>
                 <div className="bg-surface-0 border-coins-gold rounded-xs rounded-tl-none border p-1">
-                    <div ref={testRef} className="text-2xs truncate font-mono font-bold uppercase">
+                    <div ref={valueRef} className="text-2xs truncate font-mono font-bold uppercase">
                         {formatNumber(displayedValue)}
                     </div>
                 </div>
