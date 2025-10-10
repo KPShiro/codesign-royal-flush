@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAvailableGames } from '@features/lobby/api/lobby';
+import { getAvailableGames } from '@features/lobby/api/games';
 import { Game } from '@src/models/game';
 
 export const useAvailableGames = () => {

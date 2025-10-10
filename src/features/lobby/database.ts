@@ -1,6 +1,6 @@
 import { LobbySectionEntity } from '@src/features/lobby/api/lobby/get-lobby-sections';
-import { JackpotEntity } from '@src/features/lobby/api/lobby/get-jackpots';
-import { GameEntity } from '@src/features/lobby/api/lobby/get-available-games';
+import { JackpotEntity } from '@src/features/lobby/api/jackpots/get-jackpots';
+import { GameEntity } from '@src/features/lobby/api/games/get-available-games';
 
 export const GAMES: GameEntity[] = [
     {

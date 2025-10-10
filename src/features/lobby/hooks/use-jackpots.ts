@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getJackpots } from '@features/lobby/api/lobby';
+import { getJackpots } from '@features/lobby/api/jackpots';
 import { Jackpot } from '@src/models/jackpot';
 
 export const useJackpots = () => {
