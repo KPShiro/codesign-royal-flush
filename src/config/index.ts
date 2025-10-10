@@ -1,8 +1,9 @@
 import brandConfig from '@brand-config';
+import { WalletConfig } from '@src/features/payments/models/wallet';
 
 export type BrandCode = 'RLF';
 
-export type BrandConfigLink = {
+export type BrandLinkConfig = {
     href: string;
     label: string;
 };
@@ -12,11 +13,12 @@ export type BrandConfig = {
     name: string;
     motto: string;
     links: {
-        termsAndConditions: BrandConfigLink;
-        cookiePolicy: BrandConfigLink;
-        privacyPolicy: BrandConfigLink;
-        responsibleSocialGameplay: BrandConfigLink;
+        termsAndConditions: BrandLinkConfig;
+        cookiePolicy: BrandLinkConfig;
+        privacyPolicy: BrandLinkConfig;
+        responsibleSocialGameplay: BrandLinkConfig;
     };
+    wallets: WalletConfig[];
 };
 
 export type BrandEnvironment = 'development' | 'test' | 'production';

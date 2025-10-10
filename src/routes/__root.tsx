@@ -8,6 +8,7 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import { useEffect } from 'react';
 import { BRAND_CONFIG } from '@src/config';
 import { NotFoundPage } from '@components/pages/not-found-page';
+import { useWalletStore } from '@src/features/payments/hooks/use-wallet-store';
 
 gsap.registerPlugin(useGSAP, CSSPlugin, MotionPathPlugin, TextPlugin);
 
@@ -15,6 +16,12 @@ const queryClient = new QueryClient();
 
 export const Route = createRootRoute({
     component: () => {
+        const initWalletStore = useWalletStore((state) => state.init);
+
+        useEffect(() => {
+            initWalletStore(BRAND_CONFIG.wallets);
+        }, [initWalletStore]);
+
         useEffect(() => {
             document.title = BRAND_CONFIG.name;
 
