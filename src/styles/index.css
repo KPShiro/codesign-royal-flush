@@ -2,6 +2,7 @@
 
 /* CUSTOM UTILS */
 @import './glow.css';
+@import './striped-background.css';
 
 /* SHARED THEME VARIABLES */
 @theme {

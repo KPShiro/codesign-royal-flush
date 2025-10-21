@@ -1,6 +1,6 @@
 import { Icon } from '@src/components/icon';
 import { cn } from '@src/utils/cn';
-import { LockIcon } from 'lucide-react';
+import { BanIcon } from 'lucide-react';
 
 type OverlayWithUnavailableProps = Pick<React.ComponentProps<'div'>, 'className'>;
 
@@ -8,12 +8,18 @@ export const OverlayWithUnavailable = (props: OverlayWithUnavailableProps) => {
     return (
         <div
             className={cn(
-                'bg-on-surface-0/15 text-on-surface-0 flex flex-col items-center justify-center gap-1 rounded-md backdrop-blur-sm',
+                'relative isolate flex flex-col items-center justify-center gap-2',
+                'rounded-md',
                 props.className
             )}
         >
-            <Icon icon={LockIcon} size="xs" className="text-shadow-md" />
-            <span className="text-2xs font-bold text-shadow-md">Unavailable</span>
+            <div
+                className={cn(
+                    'absolute inset-0 z-0',
+                    'stripes stripes-primary/25 stripes-animate-up'
+                )}
+            ></div>
+            <Icon icon={BanIcon} size="md" className="animate-pulse opacity-25" />
         </div>
     );
 };

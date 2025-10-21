@@ -8,11 +8,16 @@ export const OverlayWithFavourite = (props: OverlayWithFavouriteProps) => {
     return (
         <div
             className={cn(
-                'border-danger relative overflow-clip rounded-md border',
+                'border-primary relative overflow-clip rounded-md border',
                 props.className
             )}
         >
-            <div className="bg-danger text-on-danger absolute top-0 right-0 rounded-bl-md pt-2 pr-2 pb-2.5 pl-2.5">
+            <div
+                className={cn(
+                    'absolute top-0 right-0 pt-2 pr-2 pb-2.5 pl-2.5',
+                    'bg-primary text-on-primary rounded-bl-md'
+                )}
+            >
                 <Icon icon={HeartIcon} size="xs" className="fill-on-danger" />
             </div>
         </div>

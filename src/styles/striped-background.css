@@ -1,0 +1,82 @@
+@utility stripes-* {
+    --stripes-opacity: calc(--modifier(number) * 1%);
+    --stripes-color: --value(--color-*, color, [color]);
+}
+
+@utility stripes-angle-* {
+    --stripes-angle: calc(--value([integer]) * 1deg);
+    --stripes-angle: calc(--value(integer) * 1deg);
+}
+
+@utility stripes-animate-up {
+    animation: animate-background-up var(--_stripes-animation-duration) linear infinite;
+}
+
+@utility stripes-animate-right {
+    animation: animate-background-right var(--_stripes-animation-duration) linear infinite;
+}
+
+@utility stripes-animate-down {
+    animation: animate-background-down var(--_stripes-animation-duration) linear infinite;
+}
+
+@utility stripes-animate-left {
+    animation: animate-background-left var(--_stripes-animation-duration) linear infinite;
+}
+
+@utility stripes {
+    --_stripes-opacity: var(--stripes-opacity, 100%);
+    --_stripes-color: var(--stripes-color, canvas);
+    --_stripes-angle: var(--stripes-angle, 0);
+
+    --_stripes-color-primary: --alpha(var(--_stripes-color) / var(--_stripes-opacity));
+    --_stripes-color-secondary: --alpha(var(--_stripes-color) / calc(var(--_stripes-opacity) - 5%));
+
+    --_stripes-animation-duration: var(--tw-duration, 4s);
+
+    background: repeating-linear-gradient(
+        var(--_stripes-angle),
+        var(--_stripes-color-primary),
+        var(--_stripes-color-primary) 8px,
+        var(--_stripes-color-secondary) 8px,
+        var(--_stripes-color-secondary) 16px
+    );
+
+    background-size: 200% 200%;
+}
+
+@keyframes animate-background-up {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+@keyframes animate-background-right {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+@keyframes animate-background-down {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 -100%;
+    }
+}
+
+@keyframes animate-background-left {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}

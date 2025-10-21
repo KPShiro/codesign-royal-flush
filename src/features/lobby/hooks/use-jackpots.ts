@@ -11,13 +11,13 @@ export const useJackpots = () => {
             return jackpots.reduce(
                 (acc, jackpot): Record<string, Jackpot[]> => {
                     jackpot.gamesIds.forEach((gameId) => {
-                        const { gamesIds, ...strippedJackpot } = jackpot;
+                        const { gamesIds, ...curatedJackpot } = jackpot;
 
                         if (!acc[gameId]) {
                             acc[gameId] = [];
                         }
 
-                        acc[gameId].push(strippedJackpot);
+                        acc[gameId].push(curatedJackpot);
                     });
 
                     return acc;
