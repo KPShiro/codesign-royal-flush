@@ -1,4 +1,4 @@
-import { HomeIcon, SearchIcon, ShoppingCartIcon, SparklesIcon, TrophyIcon } from 'lucide-react';
+import { HeartIcon, HomeIcon, SearchIcon, ShoppingCartIcon, SparklesIcon } from 'lucide-react';
 import { cn } from '@utils/cn';
 import { NavbarBottomAction, NavbarBottomItem } from './navbar-bottom-item';
 
@@ -27,9 +27,9 @@ export const NavbarBottom = (props: NavbarBottomProps) => {
             to: '/redeem',
         },
         {
-            icon: TrophyIcon,
-            label: 'Quests',
-            to: '/quests',
+            icon: HeartIcon,
+            label: 'Favourites',
+            to: '/categories/favourites',
         },
     ];
 
