@@ -157,33 +157,35 @@ export const GAMES: GameEntity[] = [
     },
 ];
 
+export const FAVOURITE_GAMES: GameEntity['id'][] = [GAMES[0].id, GAMES[2].id];
+
 export const JACKPOTS: JackpotEntity[] = [
     {
         id: 'jackpot-0',
         type: 'GRAND',
         coinType: 'GC',
-        gamesIds: ['game-2'],
+        gamesIds: [GAMES[1].id],
         value: 7_521_902,
     },
     {
         id: 'jackpot-1',
         type: 'MAJOR',
         coinType: 'GC',
-        gamesIds: ['game-2'],
+        gamesIds: [GAMES[1].id],
         value: 42_000,
     },
     {
         id: 'jackpot-2',
         type: 'MINOR',
         coinType: 'GC',
-        gamesIds: ['game-2'],
+        gamesIds: [GAMES[1].id],
         value: 2_137,
     },
     {
         id: 'jackpot-3',
         type: 'MAJOR',
         coinType: 'GC',
-        gamesIds: ['game-7'],
+        gamesIds: [GAMES[6].id],
         value: 500_000,
     },
 ];
@@ -194,23 +196,15 @@ export const LOBBY_SECTIONS: LobbySectionEntity[] = [
         type: 'GAMES_DIRECTORY',
         variant: 'DEFAULT',
         name: 'Promoted Games',
-        gameIds: ['game-2'],
+        gameIds: [GAMES[1].id],
         isVisible: true,
-    },
-    {
-        id: 'favourites',
-        type: 'GAMES_DIRECTORY',
-        variant: 'DEFAULT',
-        name: 'Favourites',
-        gameIds: ['game-1'],
-        isVisible: false,
     },
     {
         id: 'new-releases',
         type: 'GAMES_DIRECTORY',
         variant: 'PROMOTED',
         name: 'New Releases',
-        gameIds: ['game-3', 'game-1', 'game-7'],
+        gameIds: [GAMES[2].id, GAMES[0].id, GAMES[6].id],
         isVisible: true,
     },
     {

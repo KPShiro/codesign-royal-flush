@@ -1,4 +1,4 @@
-import { GAMES, LOBBY_SECTIONS } from '@features/lobby/database';
+import { FAVOURITE_GAMES, GAMES } from '@features/lobby/database';
 import { delayedPromise } from '@utils/delayed-promise';
 
 type CoinsType = 'GC' | 'SC';
@@ -25,22 +25,12 @@ type GetFavouriteGamesArgs = {
 };
 
 export async function getFavouriteGames(args: GetFavouriteGamesArgs): Promise<GameEntity[]> {
-    const FAVOURITE_SECTION = LOBBY_SECTIONS.filter(
-        (section) => section.type === 'GAMES_DIRECTORY'
-    ).find((section) => section.id === 'favourites');
-
-    if (!FAVOURITE_SECTION) {
-        return await delayedPromise(() => [], 1_000);
-    }
-
     return await delayedPromise(() => {
-        return GAMES.filter((game) => FAVOURITE_SECTION.gameIds.includes(game.id)).filter(
-            (game) => {
-                const isSupportinCoinsType = game.supportedCoinsTypes.includes(args.coinsType);
-                const isOperational = game.status === 'LIVE' || game.status === 'TEMP_UNAVAILABLE';
+        return GAMES.filter((game) => FAVOURITE_GAMES.includes(game.id)).filter((game) => {
+            const isSupportinCoinsType = game.supportedCoinsTypes.includes(args.coinsType);
+            const isOperational = game.status === 'LIVE' || game.status === 'TEMP_UNAVAILABLE';
 
-                return isSupportinCoinsType && isOperational;
-            }
-        );
+            return isSupportinCoinsType && isOperational;
+        });
     }, 1_000);
 }

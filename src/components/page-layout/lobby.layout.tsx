@@ -10,7 +10,7 @@ export const LobbyLayout = ({ children }: BasePageLayoutProps) => {
             <NavbarTop className="sticky top-0 z-20" />
             <PageContainer className="min-h-vh flex flex-col gap-6">{children}</PageContainer>
             <FooterMobile />
-            <NavbarBottom className="sticky bottom-0 z-10" />
+            <NavbarBottom className="sticky bottom-4 z-10" />
         </div>
     );
 };
