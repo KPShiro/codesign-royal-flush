@@ -7,7 +7,7 @@ export const FooterMobile = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <PageContainer className="flex flex-col gap-6">
+        <PageContainer className="flex flex-col gap-6 bg-primary">
             <FooterSeparator />
             <div className="flex flex-col gap-1">
                 <div className="text-sm font-semibold">{BRAND_CONFIG.name}</div>
