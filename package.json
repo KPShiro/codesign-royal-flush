@@ -15,8 +15,7 @@
         "storybook": "storybook dev -p 6006",
         "build:storybook": "storybook build",
         "updater": "ncu --interactive --format group",
-        "fake-api": "json-server --watch src/json-server-db.json",
-        "chromatic": "npx chromatic --project-token=chpt_b2ca62c38a1d4d7 --build-script-name=build:storybook --exit-zero-on-changes --only-changed"
+        "fake-api": "json-server --watch src/json-server-db.json"
     },
     "dependencies": {
         "@gsap/react": "^2.1.2",
