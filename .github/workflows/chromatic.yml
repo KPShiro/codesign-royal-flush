@@ -40,3 +40,28 @@ jobs:
                   buildScriptName: 'build:storybook'
                   onlyChanged: true
                   zip: true
+            - name: Add PR Comment
+              if: success()
+              uses: actions/github-script@v7
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  script: |
+                      const chromaticUrl = '${{ steps.chromatic.outputs.url }}';
+                      const status = chromaticUrl ? '✅ SUCCESS' : '❌ FAILED';
+
+                      const body = `
+                      ## 🖼️ Chromatic UI Tests Report
+
+                      Chromatic build finished with status: **${status}**.
+
+                      To review and approve visual changes, click the link below:
+
+                      [Go to Chromatic build](${chromaticUrl})
+                      `;
+
+                      await github.rest.issues.createComment({
+                        issue_number: context.issue.number,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        body: body
+                      });
