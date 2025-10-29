@@ -1,8 +1,6 @@
 name: 'Chromatic'
 
-on:
-    pull_request_review:
-        types: [submitted]
+on: pull_request_review
 
 jobs:
     check_approval:
@@ -26,8 +24,11 @@ jobs:
                       });
 
                       const approvedReviews = reviews.data.filter(review => review.state === 'APPROVED');
+                      const isApproved = approvedReviews.length >= 1;
 
-                      core.setOutput('is_approved', approvedReviews.length >= 1 ? 'true' : 'false');
+                      console.table(approvedReviews);
+
+                      core.setOutput('is_approved', isApproved ? 'true' : 'false');
     chromatic:
         name: Run Chromatic
         runs-on: ubuntu-latest
