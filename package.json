@@ -5,6 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "ci": "pnpm install --frozen-lockfile",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "preview": "vite preview",
