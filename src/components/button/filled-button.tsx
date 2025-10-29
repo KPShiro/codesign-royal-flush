@@ -10,7 +10,7 @@ const variants = cva<{
     variants: {
         color: {
             primary:
-                'bg-primary text-on-primary enabled:hover:border-on-primary/10 enabled:active:border-on-primary/0 enabled:hover:before:bg-on-primary/10 enabled:active:before:bg-on-primary/0',
+                'bg-black text-on-primary enabled:hover:border-on-primary/10 enabled:active:border-on-primary/0 enabled:hover:before:bg-on-primary/10 enabled:active:before:bg-on-primary/0',
             danger: 'bg-danger text-on-danger enabled:hover:border-on-danger/10 enabled:active:border-on-danger/0 enabled:hover:before:bg-on-danger/10 enabled:active:before:bg-on-danger/0',
         },
     },
