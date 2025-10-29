@@ -8,7 +8,7 @@ jobs:
         uses: ./.github/workflows/min-pr-approvals-count.yml
         with:
             pull-number: ${{ github.event.pull_request.number }}
-            min-approval-count: 0
+            min-approval-count: 1
         secrets:
             github-token: ${{ secrets.GITHUB_TOKEN }}
     chromatic:
