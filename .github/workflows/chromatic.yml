@@ -1,6 +1,8 @@
 name: 'Chromatic'
 
-on: pull_request
+on:
+    pull_request_review:
+        types: [submitted]
 
 jobs:
     check_approval:
@@ -15,7 +17,7 @@ jobs:
               with:
                   script: |
                       const { owner, repo } = context.repo;
-                      const pull_number = context.issue.number;
+                      const pull_number = context.payload.pull_request.number;
 
                       const reviews = await github.rest.pulls.listReviews({
                         owner,
