@@ -15,7 +15,8 @@
         "storybook": "storybook dev -p 6006",
         "build:storybook": "storybook build",
         "updater": "ncu --interactive --format group",
-        "fake-api": "json-server --watch src/json-server-db.json"
+        "fake-api": "json-server --watch src/json-server-db.json",
+        "chromatic": "npx chromatic --project-token=chpt_b2ca62c38a1d4d7 --build-script-name=build:storybook --exit-zero-on-changes --only-changed"
     },
     "dependencies": {
         "@gsap/react": "^2.1.2",
@@ -71,6 +72,7 @@
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
         "@vitejs/plugin-react": "^4.7.0",
+        "chromatic": "^13.3.2",
         "eslint": "^9.31.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-prettier": "^5.5.3",
@@ -93,3 +95,4 @@
         "vitest": "^3.2.4"
     }
 }
+
