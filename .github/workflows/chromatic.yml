@@ -23,12 +23,24 @@ jobs:
                         pull_number,
                       });
 
-                      const approvedReviews = reviews.data.filter(review => review.state === 'APPROVED');
-                      const isApproved = approvedReviews.length >= 1;
+                      const sortedReviews = reviews.data.sort(
+                          (a, b) => new Date(b.submitted_at).getTime() - new Date(a.submitted_at).getTime()
+                      );
 
-                      console.table(approvedReviews);
+                      const latestReviews = new Map();
 
-                      core.setOutput('is_approved', isApproved ? 'true' : 'false');
+                      for (const review of sortedReviews) {
+                        if (review.user && review.state !== 'COMMENTED') {
+                          if (!latestReviews.has(review.user.login)) {
+                            latestReviews.set(review.user.login, review);
+                          }
+                        }
+                      }
+
+                      const approvedCount = Array.from(latestReviews.values()).filter(review => review.state === 'APPROVED').length;
+                      const isApproved = approvedCount >= 1 ? 'true' : 'false';
+
+                      core.setOutput('is_approved', isApproved);
     chromatic:
         name: Run Chromatic
         runs-on: ubuntu-latest
