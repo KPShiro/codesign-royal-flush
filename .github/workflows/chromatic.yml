@@ -5,7 +5,7 @@ on:
     pull_request:
         types: [opened, synchronize, reopened]
 permissions:
-    contents: read
+    contents: write
     issues: write
 jobs:
     # check_approval:
