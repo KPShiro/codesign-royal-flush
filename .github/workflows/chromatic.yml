@@ -4,6 +4,9 @@ on:
         types: [submitted]
     pull_request:
         types: [opened, synchronize, reopened]
+permissions:
+    contents: read
+    issues: write
 jobs:
     # check_approval:
     #     name: Check PR Approvals
@@ -17,9 +20,6 @@ jobs:
         name: Run Chromatic
         runs-on: ubuntu-latest
         # needs: check_approval
-        permissions:
-            contents: write
-            issues: write
         # if: needs.check_approval.outputs.is_approved == 'true'
         steps:
             # - name: Checkout code
