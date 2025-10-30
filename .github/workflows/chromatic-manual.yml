@@ -1,15 +1,17 @@
 name: 'Chromatic (manual)'
 on:
-    issue_comment:
-        types: [created]
+    pull_request:
+        types: [labeled]
+permissions:
+    contents: read
+    issues: write
 jobs:
     check_comments:
         name: Check PR comments
-        if: ${{ github.event.issue.pull_request }}
+        if: ${{ github.event.label.name == 'chromatic' }}
         runs-on: ubuntu-latest
         steps:
-            - if: contains(github.event.comment.body, '/chromatic')
-              uses: actions/github-script@v7
+            - uses: actions/github-script@v7
               with:
                   script: |
                       github.rest.issues.createComment({
