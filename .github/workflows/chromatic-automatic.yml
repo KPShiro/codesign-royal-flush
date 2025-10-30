@@ -2,8 +2,6 @@ name: 'Chromatic (automatic)'
 on:
     pull_request_review:
         types: [submitted]
-    pull_request:
-        types: [opened, synchronize, reopened]
 jobs:
     # check_approval:
     #     name: Check PR Approvals
