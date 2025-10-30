@@ -3,6 +3,11 @@ on:
     issue_comment:
         types: [created]
 jobs:
+    test_workflow:
+        name: Test Workflow
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo 'RUNNING WORKFLOW...'
     check_comments:
         name: Check PR comments
         runs-on: ubuntu-latest
