@@ -1,4 +1,4 @@
-name: Check PR Approvals
+name: PR Approvals
 on:
     workflow_call:
         inputs:
@@ -21,7 +21,7 @@ on:
                 value: ${{ jobs.check_approval.outputs.is_approved }}
 jobs:
     check_approvals:
-        name: Check Approvals
+        name: Count approvals
         runs-on: ubuntu-latest
         outputs:
             is_approved: ${{ steps.check.outputs.is_approved }}

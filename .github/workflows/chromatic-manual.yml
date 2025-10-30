@@ -1,0 +1,23 @@
+name: 'Chromatic (manual)'
+on:
+    issue_comment:
+        types: [created]
+jobs:
+    check_comments:
+        name: Check PR comments
+        runs-on: ubuntu-latest
+        if: |
+            github.event.issue.pull_request
+            && contains(github.event.comment.body, '/chromatic')
+            && github.event.action == 'created'
+        steps:
+            - name: Post results
+              uses: actions/github-script@v6
+              with:
+                  script: |
+                      github.rest.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: context.issue.number,
+                        body: 'MANUAL ACTION EXECUTED'
+                      })
