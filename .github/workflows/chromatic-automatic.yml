@@ -6,7 +6,7 @@ jobs:
     check_comments:
         name: Check PR comments
         runs-on: ubuntu-latest
-        if: github.event.issue.pull_request
+        if: contains(github.event.comment.html_url, '/pull/')
         steps:
             - name: Post results
               if: contains(github.event.comment.body, '/chromatic')
