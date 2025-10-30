@@ -1,5 +1,14 @@
 name: Chromatic
-on: workflow_call
+on:
+    workflow_call:
+        inputs:
+            pr_number:
+                required: true
+                type: number
+            pr_sha:
+                required: false
+                type: string
+                default: ''
 jobs:
     # run_chromatic:
     #     name: Run Chromatic
@@ -8,6 +17,7 @@ jobs:
     #         - name: Checkout code
     #           uses: actions/checkout@v4
     #           with:
+    #               ref: ${{ inputs.pr_sha || github.sha }}
     #               fetch-depth: 0
     #         - name: Setup package manager
     #           uses: pnpm/action-setup@v3
@@ -31,6 +41,7 @@ jobs:
     post_result:
         name: Post results
         runs-on: ubuntu-latest
+        # needs: run_chromatic
         permissions:
             pull-requests: write
         steps:
@@ -40,6 +51,6 @@ jobs:
                       github.rest.issues.createComment({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        issue_number: context.issue.number,
+                        issue_number: ${{ inputs.pr_number }},
                         body: 'CHROMATIC EXECUTED'
                       })
