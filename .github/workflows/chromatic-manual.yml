@@ -6,13 +6,11 @@ jobs:
     check_comments:
         name: Check PR comments
         runs-on: ubuntu-latest
-        if: |
-            github.event.issue.pull_request
-            && contains(github.event.comment.body, '/chromatic')
-            && github.event.action == 'created'
+        if: contains(github.event.comment.html_url, '/pull/')
         steps:
             - name: Post results
-              uses: actions/github-script@v6
+              if: contains(github.event.comment.body, '/chromatic')
+              uses: actions/github-script@v7
               with:
                   script: |
                       github.rest.issues.createComment({
