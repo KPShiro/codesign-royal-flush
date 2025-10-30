@@ -4,7 +4,7 @@ on:
         types: [created]
 jobs:
     check_comments:
-        name: Check PR comments
+        name: Detect comment
         if: ${{ github.event.issue.pull_request }}
         runs-on: ubuntu-latest
         steps:
