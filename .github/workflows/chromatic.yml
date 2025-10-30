@@ -51,7 +51,7 @@ jobs:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
                       const chromaticUrl = '${{ steps.chromatic.outputs.url }}';
-                      const changesCount = ${{ steps.chromatic.outputs.changeCount }};
+                      const changesCount = Number(${{ steps.chromatic.outputs.changeCount || 0 }});
 
                       const hasChanges = changesCount > 0;
 
