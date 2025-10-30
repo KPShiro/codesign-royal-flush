@@ -57,7 +57,7 @@ jobs:
                       const body = `
                       ### Chromatic
 
-                      Status: `${statusText}` ${statusIcon}
+                      Status: **${statusText}** ${statusIcon}
 
                       To review visual changes, visit the link below:  
                       [${chromaticUrl}](${chromaticUrl})
