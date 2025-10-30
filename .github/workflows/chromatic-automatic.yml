@@ -4,6 +4,8 @@ on:
         types: [submitted]
     pull_request:
         types: [opened, synchronize, reopened]
+permissions:
+    pull-requests: write
 jobs:
     # check_approval:
     #     name: Check PR Approvals
@@ -18,8 +20,6 @@ jobs:
         runs-on: ubuntu-latest
         # needs: check_approval
         # if: needs.check_approval.outputs.is_approved == 'true'
-        permissions:
-            pull-requests: write
         steps:
             - name: Post results
               uses: actions/github-script@v7
