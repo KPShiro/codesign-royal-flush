@@ -5,11 +5,10 @@ on:
 jobs:
     check_comments:
         name: Check PR comments
+        if: ${{ github.event.issue.pull_request }}
         runs-on: ubuntu-latest
-        if: contains(github.event.comment.html_url, '/pull/')
         steps:
-            - name: Post results
-              if: contains(github.event.comment.body, '/chromatic')
+            - if: contains(github.event.comment.body, '/chromatic')
               uses: actions/github-script@v7
               with:
                   script: |
