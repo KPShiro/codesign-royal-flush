@@ -51,6 +51,8 @@ jobs:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
                       const chromaticUrl = '${{ steps.chromatic.outputs.url }}';
+                      const changesCount = ${{ steps.chromatic.outputs.changeCount }};
+
                       const statusIcon = chromaticUrl ? '✅' : '❌';
                       const statusText = chromaticUrl ? 'SUCCESS' : 'FAILURE';
 
@@ -58,6 +60,7 @@ jobs:
                       ## Chromatic
 
                       Status: **${statusText}** ${statusIcon}
+                      Detected changes: **${changesCount}**
 
                       To review visual changes, visit the link below:  
                       [${chromaticUrl}](${chromaticUrl})
