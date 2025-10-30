@@ -53,8 +53,10 @@ jobs:
                       const chromaticUrl = '${{ steps.chromatic.outputs.url }}';
                       const changesCount = ${{ steps.chromatic.outputs.changeCount }};
 
-                      const statusIcon = chromaticUrl ? '✅' : '❌';
-                      const statusText = chromaticUrl ? 'SUCCESS' : 'FAILURE';
+                      const hasChanges = changesCount > 0;
+
+                      const statusIcon = hasChanges ? '❌' : '✅';
+                      const statusText = hasChanges ? 'CHANGES_DETECTED' : 'NO_CHANGES';
 
                       const body = `
                       ## Chromatic
