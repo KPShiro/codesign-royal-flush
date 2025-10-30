@@ -50,7 +50,7 @@ jobs:
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
-                      const chromaticUrl = '${{ steps.chromatic.outputs.url }}';
+                      const chromaticUrl = '';
                       const statusIcon = chromaticUrl ? '✅' : '❌';
                       const statusText = chromaticUrl ? 'SUCCESS' : 'FAILURE';
 
