@@ -2,6 +2,8 @@ name: 'Chromatic (manual)'
 on:
     issue_comment:
         types: [created]
+permissions:
+    pull-requests: write
 jobs:
     check_comments:
         name: Detect comment
