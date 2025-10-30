@@ -58,7 +58,7 @@ jobs:
                       const statusIcon = hasChanges ? '❌' : '✅';
                       const statusText = hasChanges ? 'CHANGES_DETECTED' : 'NO_CHANGES';
 
-                      const body =```
+                      const body =`
                       ## Chromatic
 
                       Status: **${statusText}** ${statusIcon}
@@ -66,7 +66,7 @@ jobs:
 
                       To review visual changes, visit the link below:  
                       [${chromaticUrl}](${chromaticUrl})
-                      ```;
+                      `;
 
                       await github.rest.issues.createComment({
                         issue_number: context.issue.number,
