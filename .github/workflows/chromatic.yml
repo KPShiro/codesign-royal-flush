@@ -45,23 +45,18 @@ jobs:
                   onlyChanged: true
                   zip: true
             - name: Add PR Comment
-              if: success()
+              if: success() && (${{ steps.chromatic.outputs.changeCount || 0 }} > 0)
               uses: actions/github-script@v7
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
-                      const chromaticUrl = '${{ steps.chromatic.outputs.url }}';
                       const changesCount = Number(${{ steps.chromatic.outputs.changeCount || 0 }});
-
-                      const hasChanges = changesCount > 0;
-
-                      const statusIcon = hasChanges ? '❌' : '✅';
-                      const statusText = hasChanges ? 'CHANGES_DETECTED' : 'NO_CHANGES';
+                      const chromaticUrl = '${{ steps.chromatic.outputs.url }}';
 
                       const body =`
                       ## Chromatic
 
-                      Status: **${statusText}** ${statusIcon}
+                      Status: **CHANGES_DETECTED**
                       Changes count: **${changesCount}**
 
                       To review visual changes, visit the link below:  
