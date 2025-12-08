@@ -1,6 +1,6 @@
 @utility stripes-* {
     --stripes-opacity: calc(--modifier(number) * 1%);
-    --stripes-color: --value(--color-*, color, [color]);
+    --stripes-color: --value(--color-*, [color]);
 }
 
 @utility stripes-angle-* {
