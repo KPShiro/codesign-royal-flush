@@ -1,0 +1,42 @@
+name: React CI/CD Pipeline
+
+on:
+    push:
+        branches: ['main']
+    pull_request:
+        branches: ['main']
+
+jobs:
+    build-and-test:
+        name: Build and Test
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'pnpm'
+
+            - name: Install Dependencies
+              run: pnpm ci
+
+            - name: Lint Code
+              run: pnpm run lint
+
+            - name: Run Tests
+              run: pnpm run test -- --passWithNoTests
+
+            - name: Build Project
+              run: pnpm run build
+
+            - name: Upload Build Artifact
+              if: github.event_name == 'push'
+              uses: actions/upload-artifact@v4
+              with:
+                  name: build-folder
+                  path: dist/
+                  retention-days: 1
