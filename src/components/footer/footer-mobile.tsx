@@ -12,7 +12,7 @@ export const FooterMobile = () => {
             <div className="flex flex-col gap-1">
                 <div className="text-sm font-semibold">{BRAND_CONFIG.name}</div>
                 <div className="text-on-surface-0-variant text-xs font-semibold">
-                    "{BRAND_CONFIG.motto}"
+                    &quot;{BRAND_CONFIG.motto}&quot;
                 </div>
             </div>
             <div className="text-on-surface-0-variant max-w-prose text-xs">

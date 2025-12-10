@@ -38,7 +38,7 @@ export function useAction<TArgs = void, TResult = void>(
                 setIsProcessing(false);
             }
         },
-        [props.isDisabled, isProcessing, props.execute]
+        [props, isProcessing]
     );
 
     return {

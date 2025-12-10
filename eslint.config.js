@@ -46,5 +46,14 @@ export default defineConfig([
             '@typescript-eslint/no-misused-promises': 'off',
             '@typescript-eslint/restrict-template-expressions': 'off',
         },
+    },
+    {
+        files: ['.storybook/**/*.{ts,tsx}'],
+        extends: [tseslint.configs.disableTypeChecked], 
+        languageOptions: {
+            parserOptions: {
+                project: null, 
+            },
+        },
     }
 ]);

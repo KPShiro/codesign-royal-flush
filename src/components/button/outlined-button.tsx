@@ -39,3 +39,5 @@ export const OutlinedButton = forwardRef<HTMLButtonElement, OutlinedButtonProps>
         );
     }
 );
+
+OutlinedButton.displayName = 'OutlinedButton';

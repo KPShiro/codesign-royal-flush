@@ -19,7 +19,7 @@ export const WalletAmount = (props: WalletAmountProps) => {
 
     useEffect(() => {
         setCurrentId(wallet.id);
-    }, [wallet.id]);
+    }, [wallet]);
 
     useGSAP(() => {
         const isAmountDecreased = wallet.balance <= currentAmount;

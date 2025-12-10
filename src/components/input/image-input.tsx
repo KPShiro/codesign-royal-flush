@@ -145,4 +145,6 @@ const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
     }
 );
 
+ImageInput.displayName = 'ImageInput';
+
 export default ImageInput;

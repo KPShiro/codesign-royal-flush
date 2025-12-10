@@ -40,7 +40,7 @@ export const createParticleSystem = (
         particleSystem.style.height = `${height}px`;
     };
 
-    const particles = [...new Array(particleCount)].map(() => {
+    const particles = [...new Array<number>(particleCount)].map(() => {
         const particle = createParticle(particleConfig, debug);
         particleSystem.appendChild(particle);
 

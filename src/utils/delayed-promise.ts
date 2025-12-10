@@ -12,8 +12,8 @@ export function delayedPromise<T>(callback: () => T, delay: number = 1000): Prom
             try {
                 const result: T = callback();
                 resolve(result);
-            } catch (error: any) {
-                reject(error);
+            } catch (error: unknown) {
+                reject(error as Error);
             }
         }, delay);
     });

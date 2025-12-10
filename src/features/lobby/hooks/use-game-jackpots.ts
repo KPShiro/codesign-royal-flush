@@ -1,21 +1,20 @@
 import { Game } from '@models/game';
 import { useJackpots } from './use-jackpots';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { Jackpot } from '@models/jackpot';
 
 export const useGameJackpots = (gameId: Game['id']) => {
-    const [gameJackpots, setGameJackpots] = useState<Jackpot[]>([]);
-
     const { data: allJackpots } = useJackpots();
 
-    useEffect(() => {
+    const gameJackpots: Jackpot[] = useMemo(() => {
         const jackpots = allJackpots ? allJackpots[gameId] : null;
 
-        if (jackpots && jackpots.length > 0) {
-            const sortedJackpots = [...jackpots].sort((a, b) => b.value - a.value);
-            setGameJackpots(sortedJackpots);
+        if (!jackpots || jackpots.length === 0) {
+            return [];
         }
-    }, [allJackpots]);
+
+        return [...jackpots].sort((a, b) => b.value - a.value);
+    }, [allJackpots, gameId]);
 
     return gameJackpots;
 };
