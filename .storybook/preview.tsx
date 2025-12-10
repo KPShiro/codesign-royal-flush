@@ -4,6 +4,7 @@ import { Preview } from '@storybook/react';
 import '@brand-theme';
 
 const preview: Preview = {
+    tags: ['autodocs'],
     decorators: [
         // TODO: Theme changes but Storybook background stays the same... find a fix!!!
         withThemeByClassName({
