@@ -15,26 +15,30 @@ gsap.registerPlugin(useGSAP, CSSPlugin, MotionPathPlugin, TextPlugin);
 const queryClient = new QueryClient();
 
 export const Route = createRootRoute({
-    component: () => {
-        const initWalletStore = useWalletStore((state) => state.init);
-
-        useEffect(() => {
-            initWalletStore(BRAND_CONFIG.wallets);
-        }, [initWalletStore]);
-
-        useEffect(() => {
-            document.title = BRAND_CONFIG.name;
-
-            return () => {
-                document.title = 'Loading...';
-            };
-        }, []);
-
-        return (
-            <QueryClientProvider client={queryClient}>
-                <Outlet />
-            </QueryClientProvider>
-        );
-    },
+    component: RootComponent,
     notFoundComponent: NotFoundPage,
 });
+
+function RootComponent() {
+    const initWalletStore = useWalletStore((state) => state.init);
+
+    useEffect(() => {
+        initWalletStore(BRAND_CONFIG.wallets);
+    }, [initWalletStore]);
+
+    useEffect(() => {
+        document.title = BRAND_CONFIG.name;
+
+        return () => {
+            document.title = 'Loading...';
+        };
+    }, []);
+
+    return (
+        <QueryClientProvider client={queryClient}>
+            <Outlet />
+        </QueryClientProvider>
+    );
+};
+
+

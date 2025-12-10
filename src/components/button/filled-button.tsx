@@ -39,3 +39,5 @@ export const FilledButton = forwardRef<HTMLButtonElement, FilledButtonProps>(
         );
     }
 );
+
+FilledButton.displayName = 'FilledButton';

@@ -93,6 +93,7 @@ export const Disabled: Story = {
 export const WithGroups: Story = {
     render: (args) => {
         const groups = options.reduce<Record<string, Option[]>>((groups, option) => {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!groups[option.group]) {
                 groups[option.group] = [];
             }

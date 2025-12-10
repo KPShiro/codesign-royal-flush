@@ -11,7 +11,7 @@ const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
 
         const minValue = useMemo(() => {
             return value.length === 2 ? value[0] : min;
-        }, [value]);
+        }, [min, value]);
 
         const maxValue = useMemo(() => {
             if (value.length === 2) {
@@ -23,13 +23,14 @@ const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
             }
 
             return max;
-        }, [value]);
+        }, [max, value]);
 
         useEffect(() => {
             if (isNotDefined(props.value) || props.value.length === 0) {
                 return;
             }
 
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setValue(props.value);
         }, [props.value]);
 

@@ -15,10 +15,10 @@ export const GamesDirectorySectionMobile = (props: GamesDirectorySection) => {
         }
 
         return [...availableGames].filter((game) => props.gameIds.includes(game.id));
-    }, [availableGames]);
+    }, [availableGames, props.gameIds]);
 
-    const handleOnGameClick = (gameId: string) => {
-        navigate({ to: '/games/$id', params: { id: gameId } });
+    const handleOnGameClick = async (gameId: string) => {
+        await navigate({ to: '/games/$id', params: { id: gameId } });
     };
 
     if (props.gameIds.length === 0) {

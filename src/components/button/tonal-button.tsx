@@ -39,3 +39,5 @@ export const TonalButton = forwardRef<HTMLButtonElement, TonalButtonProps>(
         );
     }
 );
+
+TonalButton.displayName = 'TonalButton';

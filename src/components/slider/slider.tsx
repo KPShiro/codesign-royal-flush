@@ -10,7 +10,7 @@ const SliderTrack = ({
     return (
         <RadixSlider.Track
             {...props}
-            className={cn('bg-on-surface/10 relative h-1 flex-grow-[1] rounded-full', className)}
+            className={cn('bg-on-surface/10 relative h-1 grow rounded-full', className)}
         >
             {children}
         </RadixSlider.Track>
@@ -60,5 +60,7 @@ const Slider = forwardRef<HTMLInputElement, React.ComponentProps<typeof RadixSli
         );
     }
 );
+
+Slider.displayName = 'Slider';
 
 export default Slider;

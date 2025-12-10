@@ -2,20 +2,21 @@ import js from '@eslint/js';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import storybook from 'eslint-plugin-storybook';
+import tanstack from '@tanstack/eslint-plugin-query';
 import globals from 'globals';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
-    { ignores: ['dist'] },
+export default defineConfig([
+    { ignores: ['dist', '!.storybook'] },
     {
         settings: {
             react: {
-                version: '18.3.1',
+                version: '19.2.1',
             },
         },
         extends: [
-            'plugin:storybook/recommended',
-            'plugin:@tanstack/query/recommended',
             js.configs.recommended,
             ...tseslint.configs.recommendedTypeChecked,
             ...tseslint.configs.strictTypeChecked,
@@ -32,7 +33,9 @@ export default tseslint.config(
         plugins: {
             'react-hooks': reactHooks,
             'react-refresh': reactRefresh,
-            react,
+            storybook: storybook,
+            tanstack: tanstack,
+            react: react,
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
@@ -43,5 +46,14 @@ export default tseslint.config(
             '@typescript-eslint/no-misused-promises': 'off',
             '@typescript-eslint/restrict-template-expressions': 'off',
         },
+    },
+    {
+        files: ['.storybook/**/*.{ts,tsx}'],
+        extends: [tseslint.configs.disableTypeChecked], 
+        languageOptions: {
+            parserOptions: {
+                project: null, 
+            },
+        },
     }
-);
+]);

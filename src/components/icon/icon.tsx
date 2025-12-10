@@ -47,7 +47,7 @@ export const Icon = ({ icon, size = 'md', className, ...props }: IconProps) => {
             size={iconSize}
             strokeWidth={props.strokeWidth ?? iconStrokeWidth}
             absoluteStrokeWidth={props.absoluteStrokeWidth ?? true}
-            className={cn('flex-shrink-0 flex-grow-0', className)}
+            className={cn('shrink-0 grow-0', className)}
         />
     );
 };

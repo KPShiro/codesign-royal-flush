@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { PlusIcon } from 'lucide-react';
 import { OutlinedButton } from './outlined-button';
 import { ButtonSizes, ButtonVariants } from './types';
@@ -11,7 +11,7 @@ const meta = {
     args: {
         icon: PlusIcon,
         text: 'Create New',
-        onClick: fn,
+        onClick: fn(),
         color: 'primary',
     },
     argTypes: {

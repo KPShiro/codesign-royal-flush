@@ -9,9 +9,9 @@ export const NotFoundPage = () => {
                     <DotLottieReact src="/animations/crown.lottie" loop autoplay />
                 </div>
                 <div className="laptop:max-w-sm flex w-full max-w-xs flex-col gap-2">
-                    <h1 className="text-on-surface-0 text-xl font-bold">Nothing's here...</h1>
+                    <h1 className="text-on-surface-0 text-xl font-bold">Nothing&apos;s here...</h1>
                     <p className="text-on-surface-0-variant">
-                        Looks like you've managed to find a hidden page on our platform!
+                        Looks like you&apos;ve managed to find a hidden page on our platform!
                     </p>
                 </div>
             </div>

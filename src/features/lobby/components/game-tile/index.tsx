@@ -8,9 +8,9 @@ import { OverlayWithUnavailable } from './overlay-with-unavailable';
 import { OverlayWithFavourite } from './overlay-with-favourite';
 import { useFavouriteGames } from '@features/lobby/hooks/use-favourite-games';
 
-type GameTileProps = Pick<React.ComponentProps<'div'>, 'className' | 'onClick'> & Game;
+type GameTileProps = Pick<React.ComponentProps<'div'>, 'className'> & Game;
 
-export const GameTile = ({ className, onClick, ...game }: GameTileProps) => {
+export const GameTile = ({ className, ...game }: GameTileProps) => {
     const { data: favouriteGames } = useFavouriteGames();
 
     const isFavourite = useMemo(() => {
@@ -22,7 +22,7 @@ export const GameTile = ({ className, onClick, ...game }: GameTileProps) => {
     }, [favouriteGames, game.id]);
 
     return (
-        <div className={cn('relative isolate aspect-[3/4] rounded-md', className)}>
+        <div className={cn('relative isolate aspect-3/4 rounded-md', className)}>
             {isFavourite ? <OverlayWithFavourite className="absolute inset-0 z-4" /> : null}
             {game.label ? (
                 <OverlayWithLabel label={game.label} className="absolute inset-0 z-3" />

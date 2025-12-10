@@ -38,3 +38,5 @@ export const GhostButton = forwardRef<HTMLButtonElement, GhostButtonProps>(
         );
     }
 );
+
+GhostButton.displayName = 'GhostButton';

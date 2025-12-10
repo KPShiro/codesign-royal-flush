@@ -2,9 +2,9 @@ name: React CI/CD Pipeline
 
 on:
     push:
-        branches: ['main']
+        branches: ['master']
     pull_request:
-        branches: ['main']
+        branches: ['master']
 
 jobs:
     build-and-test:
@@ -14,15 +14,18 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
-
+              
+            - name: Install pnpm
+              run: npm install -g pnpm
+              
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
-                  cache: 'pnpm'
-
+                node-version: '20'
+                cache: 'pnpm'
+                
             - name: Install Dependencies
-              run: pnpm ci
+              run: pnpm run ci
 
             - name: Lint Code
               run: pnpm run lint
