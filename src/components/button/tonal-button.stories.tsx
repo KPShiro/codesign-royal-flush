@@ -11,7 +11,7 @@ const meta = {
     args: {
         icon: PlusIcon,
         text: 'Create New',
-        onClick: fn,
+        onClick: fn(),
         color: 'primary',
     },
     argTypes: {
