@@ -1,14 +1,13 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { NotFoundPage } from '@components/pages/not-found-page';
 import { useGSAP } from '@gsap/react';
+import { BRAND_CONFIG } from '@src/config';
+import { useWalletStore } from '@src/features/payments/hooks/use-wallet-store';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { gsap } from 'gsap';
 import { CSSPlugin } from 'gsap/CSSPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { TextPlugin } from 'gsap/TextPlugin';
-import { useEffect } from 'react';
-import { BRAND_CONFIG } from '@src/config';
-import { NotFoundPage } from '@components/pages/not-found-page';
-import { useWalletStore } from '@src/features/payments/hooks/use-wallet-store';
 
 gsap.registerPlugin(useGSAP, CSSPlugin, MotionPathPlugin, TextPlugin);
 
@@ -21,24 +20,11 @@ export const Route = createRootRoute({
 
 function RootComponent() {
     const initWalletStore = useWalletStore((state) => state.init);
-
-    useEffect(() => {
-        initWalletStore(BRAND_CONFIG.wallets);
-    }, [initWalletStore]);
-
-    useEffect(() => {
-        document.title = BRAND_CONFIG.name;
-
-        return () => {
-            document.title = 'Loading...';
-        };
-    }, []);
+    initWalletStore(BRAND_CONFIG.wallets);
 
     return (
         <QueryClientProvider client={queryClient}>
             <Outlet />
         </QueryClientProvider>
     );
-};
-
-
+}
